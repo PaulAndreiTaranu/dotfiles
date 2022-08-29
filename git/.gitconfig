@@ -1,0 +1,8 @@
+# This is Git's per-user configuration file.
+[user]
+	name = Paul Andrei Taranu
+	email = paulandreitaranu@gmail.com
+[core]
+	editor = nvim
+[credential]
+	helper = cache --timeout 72000
