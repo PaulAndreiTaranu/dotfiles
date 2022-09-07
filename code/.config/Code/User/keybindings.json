@@ -1,0 +1,75 @@
+// Place your key bindings in this file to override the defaults
+[
+    // INTEGRATED TERMINAL
+    {
+        "key": "ctrl+oem_3",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key": "ctrl+oem_3",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.terminal.focusPrevious",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.terminal.focusNext",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+h",
+        "command": "workbench.action.terminal.focusPreviousPane",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+l",
+        "command": "workbench.action.terminal.focusNextPane",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+{
+        "key": "ctrl+w",
+        "command": "workbench.action.terminal.kill",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+up",
+        "command": "workbench.action.terminal.resizePaneUp",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+down",
+        "command": "workbench.action.terminal.resizePaneDown",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+left",
+        "command": "workbench.action.terminal.resizePaneLeft",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+    {
+        "key": "alt+right",
+        "command": "workbench.action.terminal.resizePaneRight",
+        "when": "terminalFocus && terminalProcessSupported"
+    },
+
+    // EDITOR
+    {
+        "key": "space",
+        "command": "workbench.action.files.save",
+        "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !findInputFocussed"
+    },
+    {
+        "key": "shift+oem_7",
+        "command": "workbench.action.quickSwitchWindow",
+        "when": "vim.mode != 'Insert' && !findInputFocussed"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "workbench.action.gotoSymbol",
+        "when": "!remoteFileDialogVisible"
+    }
+]

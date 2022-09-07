@@ -1,0 +1,190 @@
+{
+    // FONTS
+    "editor.fontFamily": "MesloLGS NF",
+    "editor.fontSize": 12,
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontSize": 12,
+
+    // EDITOR
+    "editor.accessibilitySupport": "off",
+    "editor.codeLens": false,
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": true,
+    "editor.smoothScrolling": true,
+    "editor.detectIndentation": false,
+    "editor.insertSpaces": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.formatOnSave": true,
+    "editor.minimap.enabled": false,
+
+    // SUGGESTIONS
+    "editor.quickSuggestions": {
+        "comments": "on",
+        "strings": "on",
+        "other": "on"
+    }, // Disables all suggestions
+    "editor.quickSuggestionsDelay": 0,
+    "editor.inlineSuggest.enabled": true,
+    "editor.suggestSelection": "first",
+    "editor.suggest.showWords": false,
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.tabCompletion": "on",
+    "editor.wordBasedSuggestions": false,
+    "editor.wordBasedSuggestionsMode": "currentDocument",
+
+    // EDITOR && PRETTIER
+    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrapColumn": 119,
+    "prettier.printWidth": 119,
+    "editor.tabSize": 4,
+    "prettier.tabWidth": 4,
+
+    // PRETTIER
+    "prettier.arrowParens": "avoid",
+    "prettier.bracketSpacing": true,
+    "prettier.endOfLine": "lf",
+    "prettier.jsxBracketSameLine": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.proseWrap": "preserve",
+    "prettier.quoteProps": "as-needed",
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "all",
+    "prettier.useTabs": false,
+    // ESLINT
+    "eslint.format.enable": true,
+    "eslint.run": "onSave",
+
+    // TERMINAL
+    "terminal.explorerKind": "external",
+    "terminal.integrated.copyOnSelection": true,
+    "terminal.integrated.cursorBlinking": true,
+
+    // VIM
+    "vim.gdefault": true,
+    "vim.leader": ",",
+    "vim.sneak": true,
+    "vim.useCtrlKeys": false,
+    "vim.useSystemClipboard": true,
+    "window.restoreFullscreen": true,
+    "zenMode.hideTabs": false,
+    "zenMode.centerLayout": false,
+    "zenMode.restore": true,
+    "workbench.colorTheme": "Moxer",
+    "workbench.iconTheme": "file-icons",
+    "workbench.list.horizontalScrolling": true,
+    "workbench.productIconTheme": "fluent-icons",
+    "workbench.startupEditor": "none",
+    "workbench.list.smoothScrolling": true,
+    "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
+    "workbench.activityBar.visible": false,
+    "workbench.sideBar.location": "right",
+    "security.workspace.trust.banner": "never",
+    "security.workspace.trust.emptyWindow": false,
+    "security.workspace.trust.enabled": false,
+
+    // MISC
+    "keyboard.dispatch": "keyCode", // Solve linux caps to esc bug 
+    "telemetry.telemetryLevel": "off",
+    "git.decorations.enabled": false,
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 10000,
+    "scm.diffDecorationsGutterVisibility": "hover",
+    "explorer.confirmDelete": false,
+    "extensions.closeExtensionDetailsOnViewChange": true,
+    "extensions.ignoreRecommendations": true,
+    "breadcrumbs.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.triggerExpansionOnTab": true,
+
+    // PROGRAMMING LANGUAGES
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    // TS/JS
+    "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "debug.javascript.autoAttachFilter": "disabled",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "npm.fetchOnlinePackageInfo": false,
+
+    "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[xml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+    // PYTHON
+    "[python]": { "editor.defaultFormatter": null },
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": ["--line-length", "120"],
+    
+    // Notebook
+    "notebook.insertToolbarLocation": "notebookToolbar",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "right"
+    },
+
+    // JAVA
+    "[java]": { "editor.defaultFormatter": null },
+
+    // GOLANG
+    "[go]": {
+        "editor.defaultFormatter": "golang.go"
+    },
+    "go.toolsManagement.autoUpdate": true,
+    "gopls": {
+        "formatting.gofumpt": true
+    },
+
+    // Rust
+    "[rust]": { "editor.defaultFormatter": "rust-lang.rust" },
+
+    // C++
+    "[cpp]": { 
+        "editor.defaultFormatter": "ms-vscode.cpptools",
+        "editor.wordWrap": "off",
+    },
+    "C_Cpp.vcFormat.indent.caseLabels": true,
+    "C_Cpp.vcFormat.indent.caseContentsWhenBlock": true,
+    "C_Cpp.vcFormat.indent.accessSpecifiers": true,
+    "C_Cpp.vcFormat.indent.braces": true,
+    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: LLVM, IndentWidth: 4}",
+    "C_Cpp.clang_format_style": "{BasedOnStyle: LLVM, IndentWidth: 4}",
+    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
+    "C_Cpp.intelliSenseEngine": "Tag Parser",
+    "C_Cpp.intelliSenseCacheSize": 0,
+    "C_Cpp.intelliSenseUpdateDelay": 500,
+
+    // C#
+    "[csharp]": { "editor.defaultFormatter": "ms-dotnettools.csharp" },
+
+    // BASH
+    "[shellscript]": { "editor.defaultFormatter": "shakram02.bash-beautify" },
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true
+    },
+    "search.exclude": {
+        "node_modules": true,
+        "**/bower_components": true,
+        "**/*.code-search": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/store/**": true
+    },
+    "window.zoomLevel": 1,
+}
