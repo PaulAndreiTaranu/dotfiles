@@ -22,6 +22,7 @@ stow zsh git code nvim
 
 ## Fonts
 https://www.nerdfonts.com/font-downloads  
+https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts
 mkdir -p /usr/local/share/fonts/nerd-fonts  
 mkdir -p .local/share/fonts/nerd-fonts  
 fc-cache -vf && fc-match -a familyFontExample  

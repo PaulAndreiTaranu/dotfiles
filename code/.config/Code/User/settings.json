@@ -1,10 +1,10 @@
 {
     // FONTS
     "editor.fontFamily": "MesloLGS NF",
-    "editor.fontSize": 12,
+    "editor.fontSize": 13,
     "editor.fontLigatures": true,
     "terminal.integrated.fontFamily": "MesloLGS NF",
-    "terminal.integrated.fontSize": 12,
+    "terminal.integrated.fontSize": 13,
 
     // EDITOR
     "editor.accessibilitySupport": "off",
