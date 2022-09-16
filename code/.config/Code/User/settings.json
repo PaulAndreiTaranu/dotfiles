@@ -1,9 +1,9 @@
 {
     // FONTS
-    "editor.fontFamily": "MesloLGS NF",
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
     "editor.fontSize": 13,
     "editor.fontLigatures": true,
-    "terminal.integrated.fontFamily": "MesloLGS NF",
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
     "terminal.integrated.fontSize": 13,
 
     // EDITOR

@@ -63,11 +63,6 @@
         "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !findInputFocussed"
     },
     {
-        "key": "shift+oem_7",
-        "command": "workbench.action.quickSwitchWindow",
-        "when": "vim.mode != 'Insert' && !findInputFocussed"
-    },
-    {
         "key": "ctrl+o",
         "command": "workbench.action.gotoSymbol",
         "when": "!remoteFileDialogVisible"
