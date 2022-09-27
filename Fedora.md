@@ -1,14 +1,19 @@
-# Arch Linux Setup
+# Fedora Linux Setup
 
 ## Misc
-Install Gnome Tweaks, Extension.
+
+-   Install Gnome Tweaks, Extensions.
+-   Swap CTRL and ESC.
+-   Add system shortcuts: ALT+F4 -> SUPER+W, ALT+TAB and SUPER+TAB
 
 ## DNF Package Manager
-sudo vi /etc/dnf/dnf.conf
-* max_parallel_downloads=10
-* fastestmirror=True
-// Add VSCode, Google Chrome, and postgresql repos
 
+sudo vi /etc/dnf/dnf.conf
+
+-   max_parallel_downloads=10
+-   fastestmirror=True
+
+// Add VSCode, Google Chrome, and postgresql repos
 `rpm --import https://packages.microsoft.com/keys/microsoft.asc`
 `sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'`
 
@@ -21,12 +26,13 @@ sudo vi /etc/dnf/dnf.conf
 `sudo dnf -y install code`
 `sudo dnf -y install google-chrome-stable`
 `sudo dnf -y postgresql14-server postgresql14-docs`
-`sudo dnf -y install kitty zsh neovim`
+`sudo dnf -y install kitty zsh neovim pipenv btop`
 `sudo dnf -y upgrade && sudo dnf -y autoremove`
 
-## User Fonts  
+## User Fonts
+
 https://www.nerdfonts.com/font-downloads
-https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts  
+https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts
 
 Create a new directory /usr/local/share/fonts/font-family-name/ for the new font family  
 `sudo mkdir -p /usr/local/share/fonts/JetBrainsMono`
@@ -41,7 +47,8 @@ Check kitty usable fonts
 `kitty +list-fonts`
 
 ## ZSH
+
 `sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"`
 // chsh -s $(which zsh) || usermod --shell $(which zsh) paul
 `git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k`
-// Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc.  
+// Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc.

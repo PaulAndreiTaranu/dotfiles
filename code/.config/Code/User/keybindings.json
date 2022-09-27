@@ -66,5 +66,15 @@
         "key": "ctrl+o",
         "command": "workbench.action.gotoSymbol",
         "when": "!remoteFileDialogVisible"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "extension.vim_ctrl+d",
+        "when": "editorTextFocus && vim.active && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "extension.vim_ctrl+u",
+        "when": "editorTextFocus && vim.active && !inDebugRepl"
     }
 ]
