@@ -106,12 +106,45 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+## LSD alias
+alias ls="lsd -a"
+alias lt="lsd --tree"
+alias l="lsd -la"
+
+# Docker alias
+alias d="docker"
+alias docsa='docker kill $(docker ps -q)'
+
+# pnpm alias
+alias ps="pnpm start"
+alias pd="pnpm dev"
+alias pt="pnpm test"
+alias pi="pnpm install"
+alias pu='pnpm update --interactive --latest'
+alias pa="pnpm add"
+alias pad="pnpm add --save-dev"
+alias prm="pnpm remove"
+alias pls="pnpm list"
+
 alias t="btop"
 alias c="clear"
 alias r="reset"
 alias j="clear && journalctl --since -1m"
 alias zshrc="vi $HOME/.zshrc"
+
+## Shortcuts
 alias sudopsql="sudo -i -u postgres psql"
+alias chmodscripts="find $HOME/dotfiles/scripts -type f -iname '*.sh' -exec chmod +x {} \;"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/paul/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
