@@ -5,4 +5,4 @@
 [core]
 	editor = nvim
 [credential]
-	helper = cache --timeout 7890000
+	helper = store
