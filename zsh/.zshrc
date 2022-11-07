@@ -108,25 +108,32 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ## LSD alias
-alias ls="lsd -a"
+alias ls="lsd"
 alias lt="lsd --tree"
 alias l="lsd -la"
 
 # Docker alias
 alias d="docker"
-alias docsa='docker kill $(docker ps -q)'
+alias docsa="docker kill $(docker ps -q)"
+alias docprune="docker system prune --force --all --volumes"
+alias dc="docker compose"
+alias dcrestart="docker compose down && docker compose up --build"
+
+# Terraform
+alias terra="terraform"
 
 # pnpm alias
 alias ps="pnpm start"
 alias pd="pnpm dev"
 alias pt="pnpm test"
 alias pi="pnpm install"
-alias pu='pnpm update --interactive --latest'
+alias pu="pnpm update --interactive --latest"
 alias pa="pnpm add"
 alias pad="pnpm add --save-dev"
 alias prm="pnpm remove"
 alias pls="pnpm list"
 
+# general alias
 alias t="btop"
 alias c="clear"
 alias r="reset"

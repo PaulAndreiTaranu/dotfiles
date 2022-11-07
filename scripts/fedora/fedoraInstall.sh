@@ -1,15 +1,7 @@
 #!/usr/bin/env bash
 
-# Username
-USERNAME='paul'
-
 # Reset
 NOCOLOR='\033[0m'       # Text Reset
-
-# Regular Colors
-BLACK='\033[0;30m'
-RED='\033[0;31m'
-GREEN='\033[0;32m'
 
 # Bold
 BBLACK='\033[1;30m'
@@ -17,7 +9,7 @@ BRED='\033[1;31m'
 BGREEN='\033[1;32m'
 
 echo -e "${BGREEN}### INSTALLING SOFTWARE${NOCOLOR}" >&2
-sudo dnf -y install kitty zsh stow neovim pipenv btop lsd
+sudo dnf -y install kitty zsh stow neovim pipenv btop lsd dnf-plugins-core
 
 # Neovim
 echo -e "${BGREEN}### SETTING UP NEOVIM${NOCOLOR}" >&2
@@ -25,9 +17,9 @@ sudo rm -rf /bin/vi && ln /bin/nvim /bin/vi
 
 # ZSH
 echo -e "${BGREEN}### SETTING UP ZSH${NOCOLOR}" >&2
-# ASNORMALUSER="sudo -H -u $USERNAME bash -c"
+# ASNORMALUSER="sudo -H -u $USER bash -c"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-usermod --shell $(which zsh) $USERNAME
+usermod --shell $(which zsh) $USER
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # PNPM

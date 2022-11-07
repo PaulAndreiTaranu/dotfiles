@@ -3,4 +3,5 @@
 # remove duplicat entries from $PATH
 # zsh uses $path array along with $PATH
 typeset -U PATH path
-export PATH=$HOME/scripts:$HOME/dotfiles/scripts:$HOME/.cargo/env:$PATH
+path+=(~/dotfiles/scripts/**/*/(N/) ~/.cargo/env)
+export PATH
