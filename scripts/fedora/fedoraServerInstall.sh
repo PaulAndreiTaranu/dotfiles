@@ -22,9 +22,6 @@ echo -e "${BGREEN}### SETTING UP DOTFILES${NOCOLOR}" >&2
 $ASNORMALUSER 'rm ~/.zshrc ~/.bashrc ~/.bash_history ~/.bash_logout ~/.bash_profile ~/.viminfo ~/.gitconfig'
 $ASNORMALUSER 'cd $HOME/dotfiles && stow git nvim zsh'
 
-echo -e "${BGREEN}### SETTING UP SSH${NOCOLOR}" >&2
-$ASNORMALUSER 'ssh-keygen -t ed25519 -C "paulandreitaranu@gmail.com" -f ~/.ssh/fedora -P "" -q'
-
 echo -e "${BGREEN}### CLEANARDO BB${NOCOLOR}" >&2
 $ASNORMALUSER 'find $HOME/dotfiles/scripts -type f -iname "*.sh" -exec chmod +x {} \;'
 sudo dnf -y upgrade && sudo dnf -y autoremove && sudo dnf -y clean all
