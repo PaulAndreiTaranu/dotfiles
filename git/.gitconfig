@@ -2,7 +2,9 @@
 [user]
 	name = Paul Andrei Taranu
 	email = paulandreitaranu@gmail.com
-[core]
-	editor = nvim
 [credential]
     helper = cache --timeout=7890000
+[core]
+	editor = nvim
+[init]
+    defaultBranch = main

@@ -114,8 +114,8 @@ alias l="lsd -la"
 
 # Docker alias
 alias d="docker"
-alias docsa="docker kill $(docker ps -q)"
-alias docprune="docker system prune --force --all --volumes"
+alias doccontainerprune="d stop $(d ps -aq) && d container prune --force"
+alias docsystemprune="docker system prune --force --all --volumes"
 alias dc="docker compose"
 alias dcrestart="docker compose down && docker compose up --build"
 
