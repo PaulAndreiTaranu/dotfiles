@@ -10,3 +10,4 @@ BGREEN='\033[1;32m'
 
 echo -e "${BGREEN}### SETTING UP SSH${NOCOLOR}" >&2
 ssh-keygen -t ed25519 -C 'paulandreitaranu@gmail.com' -f ~/.ssh/$(uname -n) -P "" -q
+
