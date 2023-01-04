@@ -8,6 +8,9 @@ BBLACK='\033[1;30m'
 BRED='\033[1;31m'
 BGREEN='\033[1;32m'
 
+echo -e "${BGREEN}### UPDATING SYSTEM${NOCOLOR}" >&2
+sudo apt update && sudo apt upgrade -y
+
 echo -e "${BGREEN}### INSTALLING SOFTWARE${NOCOLOR}" >&2
 sudo apt -y install zsh stow neovim pipenv btop lsd
 sudo rm -rf /bin/vi && ln /bin/nvim /bin/vi
@@ -24,4 +27,4 @@ $ASNORMALUSER 'cd $HOME/dotfiles && stow git nvim zsh'
 
 echo -e "${BGREEN}### CLEANARDO BB${NOCOLOR}" >&2
 $ASNORMALUSER 'find $HOME/dotfiles/scripts -type f -iname "*.sh" -exec chmod +x {} \;'
-sudo apt update && sudo apt upgrade -y && sudo apt autoremove -y
+sudo apt autoremove -y
