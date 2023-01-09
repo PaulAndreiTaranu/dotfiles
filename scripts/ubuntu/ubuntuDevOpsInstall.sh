@@ -33,11 +33,12 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
     sudo tee /etc/apt/sources.list.d/hashicorp.list
 
 echo -e "${BGREEN}### SETTING UP AZURE-CLI REPO${NOCOLOR}" >&2
-sudo curl -sL https://packages.microsoft.com/keys/microsoft.asc |
-    gpg --dearmor |
-    sudo tee /etc/apt/trusted.gpg.d/microsoft.gpg > /dev/null
-echo "deb [arch=`dpkg --print-architecture`] \
-    https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | \ 
+sudo mkdir -p /etc/apt/keyrings
+sudo curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | \
+    sudo tee /etc/apt/keyrings/microsoft.gpg > /dev/null
+sudo chmod go+r /etc/apt/keyrings/microsoft.gpg
+echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] \
+    https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | \
     sudo tee /etc/apt/sources.list.d/azure-cli.list
 
 echo -e "${BGREEN}### SETTING UP KUBECTL REPO${NOCOLOR}" >&2

@@ -12,14 +12,17 @@ echo -e "${BGREEN}### UPDATING SYSTEM${NOCOLOR}" >&2
 sudo apt update && sudo apt upgrade -y
 
 echo -e "${BGREEN}### INSTALLING SOFTWARE${NOCOLOR}" >&2
-sudo apt -y install zsh stow neovim pipenv btop lsd
-sudo rm -rf /bin/vi && ln /bin/nvim /bin/vi
+sudo apt -y install zsh stow neovim pipenv btop
+sudo wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
+sudo dpkg -i lsd_0.23.1_amd64.deb
+sudo rm lsd_0.23.1_amd64.deb
+sudo rm -rf /bin/vi && sudo ln /bin/nvim /bin/vi
 
 echo -e "${BGREEN}### SETTING UP ZSH${NOCOLOR}" >&2
 ASNORMALUSER="sudo -H -u $USER bash -c"
 $ASNORMALUSER 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended'
 $ASNORMALUSER "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
-usermod --shell $(which zsh) $USER
+sudo usermod --shell $(which zsh) $USER
 
 echo -e "${BGREEN}### SETTING UP DOTFILES${NOCOLOR}" >&2
 $ASNORMALUSER 'rm ~/.zshrc ~/.bashrc ~/.bash_history ~/.bash_logout ~/.bash_profile ~/.viminfo ~/.gitconfig'
