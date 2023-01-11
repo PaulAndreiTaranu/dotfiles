@@ -163,5 +163,3 @@ export PATH="$PNPM_HOME:$PATH"
 typeset -U PATH path
 path+=(~/dotfiles/scripts/ ~/dotfiles/scripts/**/*/(N/) ~/.cargo/env)
 export PATH
-
-export PATH=$PATH:/root/bin
