@@ -143,6 +143,7 @@ alias zshrc="vi $HOME/.zshrc"
 ## Shortcuts
 alias sudopsql="sudo -i -u postgres psql"
 alias chmodscripts="find $HOME/dotfiles/scripts -type f -iname '*.sh' -exec chmod +x {} \;"
+alias update="sudo apt update -y --allow-insecure-repositories && sudo apt upgrade -y && sudo apt autoremove -y"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -32,14 +32,14 @@ echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] \
     https://apt.releases.hashicorp.com $(lsb_release -cs) main" | \
     sudo tee /etc/apt/sources.list.d/hashicorp.list
 
-echo -e "${BGREEN}### SETTING UP AZURE-CLI REPO${NOCOLOR}" >&2
-sudo mkdir -p /etc/apt/keyrings
-sudo curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | \
-    sudo tee /etc/apt/keyrings/microsoft.gpg > /dev/null
-sudo chmod go+r /etc/apt/keyrings/microsoft.gpg
-echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] \
-    https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | \
-    sudo tee /etc/apt/sources.list.d/azure-cli.list
+# echo -e "${BGREEN}### SETTING UP AZURE-CLI REPO${NOCOLOR}" >&2
+# sudo mkdir -p /etc/apt/keyrings
+# sudo curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | \
+#     sudo tee /etc/apt/keyrings/microsoft.gpg > /dev/null
+# sudo chmod go+r /etc/apt/keyrings/microsoft.gpg
+# echo "deb [arch=`dpkg --print-architecture` signed-by=/etc/apt/keyrings/microsoft.gpg] \
+#     https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | \
+#     sudo tee /etc/apt/sources.list.d/azure-cli.list
 
 echo -e "${BGREEN}### SETTING UP KUBECTL REPO${NOCOLOR}" >&2
 sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
@@ -62,8 +62,8 @@ sudo systemctl enable containerd.service --now
 echo -e "${BGREEN}### INSTALLING TERRAFORM${NOCOLOR}" >&2
 sudo apt install -y terraform
 
-echo -e "${BGREEN}### INSTALLING AZURE-CLI${NOCOLOR}" >&2
-sudo apt install -y azure-cli
+# echo -e "${BGREEN}### INSTALLING AZURE-CLI${NOCOLOR}" >&2
+# sudo apt install -y azure-cli
 
 echo -e "${BGREEN}### INSTALLING KUBECTL${NOCOLOR}" >&2
 sudo apt install -y kubectl
