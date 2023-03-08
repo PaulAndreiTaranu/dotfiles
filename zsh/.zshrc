@@ -162,7 +162,14 @@ export PATH="$PNPM_HOME:$PATH"
 # remove duplicat entries from $PATH
 # zsh uses $path array along with $PATH
 typeset -U PATH path
-path+=(~/dotfiles/scripts/ ~/dotfiles/scripts/**/*/(N/) ~/.cargo/env)
+# path+=(~/dotfiles/scripts/ ~/dotfiles/scripts/**/*/(N/) ~/.cargo/env)
+
+export PATH=$PATH:/home/$USER/dotfiles
+export PATH=$PATH:/home/$USER/dotfiles/**/*/(N/)
+export PATH=$PATH:/home/$USER/.cargo/env
+export PATH=$PATH:/home/dotfiles
+export PATH=$PATH:/root/bin
+export PATH=$PATH:/home/$USER/bin
 export PATH
 
-export PATH=$PATH:/root/bin
+source '/home/paul/lib/azure-cli/az.completion'
