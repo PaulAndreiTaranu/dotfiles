@@ -122,7 +122,8 @@ alias dcrestart="docker compose down && docker compose up --build"
 # Terraform
 alias terra="terraform"
 
-# pnpm alias
+# Javascript alias
+alias p="pnpm"
 alias ps="pnpm start"
 alias pd="pnpm dev"
 alias pt="pnpm test"
@@ -132,6 +133,9 @@ alias pa="pnpm add"
 alias pad="pnpm add --save-dev"
 alias prm="pnpm remove"
 alias pls="pnpm list"
+
+# Python alias
+alias poe="poetry"
 
 # general alias
 alias t="btop"
@@ -170,6 +174,7 @@ export PATH=$PATH:/home/$USER/.cargo/env
 export PATH=$PATH:/home/dotfiles
 export PATH=$PATH:/root/bin
 export PATH=$PATH:/home/$USER/bin
+export PATH=$PATH:/home/$USER/.local/bin
 export PATH
 
 source '/home/paul/lib/azure-cli/az.completion'

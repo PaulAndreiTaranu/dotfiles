@@ -17,6 +17,7 @@ sudo wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_am
 sudo dpkg -i lsd_0.23.1_amd64.deb
 sudo rm lsd_0.23.1_amd64.deb
 sudo rm -rf /bin/vi && sudo ln /bin/nvim /bin/vi
+sudo rm -rf /bin/py && sudo ln /bin/python3 /bin/py
 
 echo -e "${BGREEN}### SETTING UP ZSH${NOCOLOR}" >&2
 ASNORMALUSER="sudo -H -u $USER bash -c"
