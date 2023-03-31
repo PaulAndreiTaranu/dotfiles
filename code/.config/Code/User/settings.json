@@ -1,16 +1,16 @@
 {
     // FONTS
-    "editor.fontFamily": "JetBrainsMono Nerd Font",
+    "editor.fontFamily": "JetBrainsMono NF",
     "editor.fontSize": 13,
     "editor.fontLigatures": true,
-    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+    "terminal.integrated.fontFamily": "JetBrainsMono NF",
     "terminal.integrated.fontSize": 13,
 
     // EDITOR
     "editor.accessibilitySupport": "off",
     "editor.codeLens": false,
     "editor.cursorBlinking": "smooth",
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.smoothScrolling": true,
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
@@ -54,6 +54,7 @@
     "prettier.singleQuote": true,
     "prettier.trailingComma": "all",
     "prettier.useTabs": false,
+    "prettier.singleAttributePerLine": true,
     // ESLINT
     "eslint.format.enable": true,
     "eslint.run": "onSave",
@@ -83,7 +84,6 @@
 
     // MISC
     "window.restoreFullscreen": true,
-    "window.zoomLevel": 1,
     "keyboard.dispatch": "keyCode", // Solve linux caps to esc bug
     "telemetry.telemetryLevel": "off",
     "git.decorations.enabled": false,
@@ -92,7 +92,6 @@
     "scm.diffDecorationsGutterVisibility": "hover",
     "extensions.closeExtensionDetailsOnViewChange": true,
     "extensions.ignoreRecommendations": true,
-    "breadcrumbs.enabled": false,
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
     "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
@@ -132,7 +131,7 @@
 
     // GOLANG
     "[go]": {
-        "editor.defaultFormatter": "golang.go"
+        "editor.defaultFormatter": "golang.go-nightly"
     },
     "go.toolsManagement.autoUpdate": true,
     "gopls": {
@@ -153,7 +152,7 @@
     "C_Cpp.vcFormat.indent.braces": true,
     "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: LLVM, IndentWidth: 4}",
     "C_Cpp.clang_format_style": "{BasedOnStyle: LLVM, IndentWidth: 4}",
-    "C_Cpp.errorSquiggles": "Disabled",
+    "C_Cpp.errorSquiggles": "enabled",
     "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
     "C_Cpp.intelliSenseEngine": "Tag Parser",
     "C_Cpp.intelliSenseCacheSize": 0,
@@ -161,9 +160,13 @@
 
     // C#
     "[csharp]": { "editor.defaultFormatter": "ms-dotnettools.csharp" },
+    "omnisharp.enableEditorConfigSupport": false,
 
     // BASH
     "[shellscript]": { "editor.defaultFormatter": "shakram02.bash-beautify" },
+
+    //
+    "[terraform]": { "editor.defaultFormatter": "hashicorp.terraform" },
 
     "files.exclude": {
         "**/.git": true,
@@ -199,5 +202,14 @@
         // "editor.background": "#000000"
         // "editoreNumber.activeForeground": "#ffffff"
         // "editorLineNumber.foreground": "#808080",
-    }
+    },
+    "remote.SSH.remotePlatform": {
+        "fedoraServer": "linux",
+        "ubuntuServer": "linux"
+    },
+
+    // GAME ENGINES WINDOWS
+    "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
+    "godot_tools.gdscript_lsp_server_port": 6005,
+    "window.zoomLevel": 1
 }
