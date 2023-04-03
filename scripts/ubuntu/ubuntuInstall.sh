@@ -12,11 +12,12 @@ echo -e "${BGREEN}### UPDATING SYSTEM${NOCOLOR}" >&2
 sudo apt update && sudo apt upgrade -y
 
 echo -e "${BGREEN}### INSTALLING SOFTWARE${NOCOLOR}" >&2
-sudo apt -y install curl wget git zsh stow neovim btop
+sudo apt -y install curl wget git zsh stow neovim pipenv btop kitty
 sudo wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
 sudo dpkg -i lsd_0.23.1_amd64.deb
 sudo rm lsd_0.23.1_amd64.deb
 sudo rm -rf /bin/vi && sudo ln /bin/nvim /bin/vi
+sudo rm -rf /bin/py && sudo ln /bin/python3 /bin/py
 
 echo -e "${BGREEN}### SETTING UP ZSH${NOCOLOR}" >&2
 ASNORMALUSER="sudo -H -u $USER bash -c"
@@ -25,10 +26,10 @@ $ASNORMALUSER "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git 
 sudo usermod --shell $(which zsh) $USER
 
 echo -e "${BGREEN}### SETTING UP DOTFILES${NOCOLOR}" >&2
-$ASNORMALUSER   'rm -rf ~/.config/nvim \
+$ASNORMALUSER   'rm -rf ~/.config/kitty ~/.config/nvim \
                 ~/.zshrc ~/.zshrc.backup ~/.bashrc ~/.bash_history ~/.bash_logout \
                 ~/.bash_profile ~/.viminfo ~/.gitconfig'
-$ASNORMALUSER 'cd $HOME/dotfiles && stow git nvim zsh'
+$ASNORMALUSER 'cd $HOME/dotfiles && stow git nvim zsh kitty'
 
 echo -e "${BGREEN}### CLEANARDO BB${NOCOLOR}" >&2
 $ASNORMALUSER 'find $HOME/dotfiles/scripts -type f -iname "*.sh" -exec chmod +x {} \;'

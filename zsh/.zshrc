@@ -158,20 +158,19 @@ export NVM_DIR="$HOME/.nvm"
 
 # PATH
 
+# remove duplicat entries from $PATH
+# zsh uses $path array along with $PATH
+# typeset -U PATH path
+# path+=  ("~/dotfiles/scripts/" "~/dotfiles/scripts/**/*/(N/)" "/root/bin" "~/.cargo/env")
+
 # pnpm
 export PNPM_HOME="/home/paul/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-# remove duplicat entries from $PATH
-# zsh uses $path array along with $PATH
-typeset -U PATH path
-# path+=(~/dotfiles/scripts/ ~/dotfiles/scripts/**/*/(N/) ~/.cargo/env)
 
-export PATH=$PATH:/home/$USER/dotfiles
-export PATH=$PATH:/home/$USER/dotfiles/**/*/(N/)
+# export PATH=$PATH$(find /home/$USER/dotfiles/scripts -type d -exec printf ":%s" {} +)
 export PATH=$PATH:/home/$USER/.cargo/env
-export PATH=$PATH:/home/dotfiles
 export PATH=$PATH:/root/bin
 export PATH=$PATH:/home/$USER/bin
 export PATH=$PATH:/home/$USER/.local/bin
