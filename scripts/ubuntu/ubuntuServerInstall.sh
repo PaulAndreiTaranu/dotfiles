@@ -27,7 +27,7 @@ sudo usermod --shell $(which zsh) $USER
 echo -e "${BGREEN}### SETTING UP DOTFILES${NOCOLOR}" >&2
 $ASNORMALUSER   'rm -rf ~/.config/nvim \
                 ~/.zshrc ~/.zshrc.backup ~/.bashrc ~/.bash_history ~/.bash_logout \
-                ~/.bash_profile ~/.viminfo ~/.gitconfig'
+                ~/.bash_profile ~/.viminfo ~/.gitconfig && mkdir ~/.config'
 $ASNORMALUSER 'cd $HOME/dotfiles && stow git nvim zsh'
 
 echo -e "${BGREEN}### CLEANARDO BB${NOCOLOR}" >&2
