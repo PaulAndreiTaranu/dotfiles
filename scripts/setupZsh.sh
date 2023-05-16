@@ -31,6 +31,8 @@ function setup_zsh(){
     fi
 
     # Check if powerlevel10k theme is installed
+    # Set ZSH_THEME="powerlevel10k/powerlevel10k" in ~/.zshrc.
+    # `p10k configure` if config wizard doesn't start
     p10k_DIR="$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
     if [[ ! -d "$p10k_DIR" && -d "$HOME/.oh-my-zsh" ]]; then
         print_green '### INSTALLING POWERLEVEL10K THEME'
@@ -40,7 +42,14 @@ function setup_zsh(){
     fi
 
     # Change default shell to zsh
+    print_red '### CHANGE DEFAULT SHELL TO ZSH AND STOW CONFIG'
     sudo usermod --shell $(which zsh) $USER
+
+    if [[ -e "$HOME/.zshrc" ]]; then
+        files_to_remove=( $HOME/.zshrc $HOME/.zshrc.backup)
+        remove_with_array "${files_to_remove[@]}"
+        as_normal_user "cd $HOME/dotfiles && stow zsh"
+    fi
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
