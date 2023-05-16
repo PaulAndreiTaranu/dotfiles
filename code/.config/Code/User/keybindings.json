@@ -30,7 +30,7 @@
         "command": "workbench.action.terminal.focusNextPane",
         "when": "terminalFocus && terminalProcessSupported"
     },
-{
+    {
         "key": "ctrl+w",
         "command": "workbench.action.terminal.kill",
         "when": "terminalFocus && terminalProcessSupported"
@@ -76,5 +76,19 @@
         "key": "ctrl+u",
         "command": "extension.vim_ctrl+u",
         "when": "editorTextFocus && vim.active && !inDebugRepl"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "workbench.view.remote"
+    },
+    {
+        "key": "alt+j",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "alt+k",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
     }
 ]

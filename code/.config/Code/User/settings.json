@@ -1,10 +1,12 @@
 {
     // FONTS
-    "editor.fontFamily": "JetBrainsMono NF",
+    "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontSize": 13,
     "editor.fontLigatures": true,
-    "terminal.integrated.fontFamily": "JetBrainsMono NF",
+    "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
     "terminal.integrated.fontSize": 13,
+    "editor.fontWeight": "500",
+    "errorLens.fontWeight": "bold",
 
     // EDITOR
     "editor.accessibilitySupport": "off",
@@ -29,11 +31,14 @@
     "editor.inlineSuggest.enabled": true,
     "editor.suggestSelection": "first",
     "editor.suggest.showWords": false,
-    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": true,
+    "editor.suggest.insertMode": "insert",
+    "editor.acceptSuggestionOnCommitCharacter": true,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.tabCompletion": "on",
     "editor.wordBasedSuggestions": false,
     "editor.wordBasedSuggestionsMode": "currentDocument",
+    "editor.snippetSuggestions": "top",
 
     // EDITOR && PRETTIER
     "editor.wordWrap": "off",
@@ -54,10 +59,13 @@
     "prettier.singleQuote": true,
     "prettier.trailingComma": "all",
     "prettier.useTabs": false,
-    "prettier.singleAttributePerLine": true,
+    "prettier.singleAttributePerLine": false,
     // ESLINT
     "eslint.format.enable": true,
     "eslint.run": "onSave",
+
+    // ERROR LENS
+    "errorLens.delay": 0,
 
     // TERMINAL
     "terminal.explorerKind": "external",
@@ -194,8 +202,6 @@
     "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
     "workbench.activityBar.visible": false,
     "workbench.sideBar.location": "right",
-    // THEME
-    "workbench.iconTheme": "file-icons",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.colorTheme": "Ayu Dark",
     "workbench.colorCustomizations": {
@@ -211,5 +217,6 @@
     // GAME ENGINES WINDOWS
     "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
     "godot_tools.gdscript_lsp_server_port": 6005,
+    "workbench.iconTheme": "material-icon-theme",
     "window.zoomLevel": 1
 }

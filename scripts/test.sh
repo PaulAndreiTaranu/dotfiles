@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# Reset
-NOCOLOR='\033[0m'       # Text Reset
+UTILS_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
+.  $UTILS_DIR/utils.sh
+check_sudo
 
-# Bold
-BBLACK='\033[1;30m'
-BRED='\033[1;31m'
-BGREEN='\033[1;32m'
+if [[ -d "$HOME/xdd" && -e "$HOME/xd" ]]; then
+    print_green "true"
+else
+    print_red "false"
+fi
 
-
-echo -e "${BGREEN}### SETTING UP DOTFILES${NOCOLOR}" >&2
-cd ~/dotfiles && stow kitty
+# [[ ! -z $snap ]] && echo 'Not Empty' || echo 'Empty'
