@@ -10,7 +10,7 @@ function setup_zsh(){
     print_green '### SETTING UP ZSH'
 
     # Check if zsh is installed
-    if [ ! -e "/bin/zsh" ]; then
+    if [ ! -e "/usr/bin/zsh" ]; then
         if is_ubuntu; then
             print_green '### INSTALLING ZSH'
             sudo apt -y install zsh

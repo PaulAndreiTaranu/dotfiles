@@ -7,7 +7,7 @@ check_sudo
 function setup_neovim() {
     print_green '### SETTING UP NEOVIM'
 
-    if [ -f /bin/vim ]; then
+    if [ -e "/usr/bin/vim" ]; then
         print_green '### REMOVING VIM'
         if is_ubuntu; then
             sudo apt purge -y --auto-remove vim
@@ -17,7 +17,7 @@ function setup_neovim() {
         fi
     fi
 
-    if [ ! -e /snap/bin/nvim ]; then
+    if [ ! -e "/snap/bin/nvim" ]; then
         print_green '### INSTALLING NEOVIM FROM SNAP'
         if_snap 'sudo snap install --edge nvim --classic'
     else 
