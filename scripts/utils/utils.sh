@@ -1,5 +1,5 @@
 # Reset
-NOCOLOR='\033[0m'       # Text Reset
+NOCOLOR='\033[0m' # Text Reset
 
 # Bold
 BBLACK='\033[1;30m'
@@ -10,16 +10,18 @@ release_file=$(cat /etc/os-release | grep 'Ubuntu')
 snap=$(snap version | grep 'snap')
 
 function check_sudo() {
-    [ "$UID" -eq 0 ] || exec sudo bash "$0" "$@"
-    HOME="$(getent passwd "$SUDO_USER" | cut -f6 -d:)"
-    USER=$SUDO_USER
+    # HOME="$(getent passwd "$SUDO_USER" | cut -f6 -d:)"
+    MY_USER=$USER
+    if [[ ! "$UID" -eq 0 ]]; then
+        exec sudo -E bash -c "USER=$MY_USER "$0" "$@" "
+    fi
 }
 
 #############################################
 # Deletes every element of the provided array
 #
 # Example:
-#   remove_with_array "${array[@]}"   
+#   remove_with_array "${array[@]}"
 #############################################
 function remove_with_array() {
     arr=("$@")
@@ -30,7 +32,7 @@ function remove_with_array() {
 }
 
 function as_normal_user() {
-    sudo -H -u $SUDO_USER bash -c "$1"
+    sudo -H -u $USER bash -c "$1"
 }
 
 function print_green() {
@@ -52,7 +54,7 @@ function is_ubuntu() {
 #   snap 'sudo snap install --edge nvim --classic'
 #############################################
 function if_snap() {
-    if [[ ! -z $snap ]]; then 
+    if [[ ! -z $snap ]]; then
         $1
     else
         print_red '### SNAP NOT FOUND'

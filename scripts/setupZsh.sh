@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-UTILS_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
-.  $UTILS_DIR/utils.sh
+SCRIPTS="$HOME/dotfiles/scripts"
+. $SCRIPTS/utils/utils.sh
 check_sudo
 
 OHMYZSH_LINK="curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
 
-function setup_zsh(){
+function setup_zsh() {
     print_green '### SETTING UP ZSH'
 
     # Check if zsh is installed
@@ -36,7 +36,7 @@ function setup_zsh(){
     p10k_DIR="$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
     if [[ ! -d "$p10k_DIR" && -d "$HOME/.oh-my-zsh" ]]; then
         print_green '### INSTALLING POWERLEVEL10K THEME'
-        as_normal_user  "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${p10k_DIR}"
+        as_normal_user "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${p10k_DIR}"
     else
         print_red '### POWERLEVEL10K ALREADY INSTALLED'
     fi
@@ -46,7 +46,7 @@ function setup_zsh(){
     sudo usermod --shell $(which zsh) $USER
 
     if [[ -e "$HOME/.zshrc" ]]; then
-        files_to_remove=( $HOME/.zshrc $HOME/.zshrc.backup)
+        files_to_remove=($HOME/.zshrc $HOME/.zshrc.backup)
         remove_with_array "${files_to_remove[@]}"
         as_normal_user "cd $HOME/dotfiles && stow zsh"
     fi

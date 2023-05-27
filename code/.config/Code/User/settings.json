@@ -91,9 +91,10 @@
     "security.workspace.trust.enabled": false,
 
     // MISC
-    "window.restoreFullscreen": true,
     "keyboard.dispatch": "keyCode", // Solve linux caps to esc bug
     "telemetry.telemetryLevel": "off",
+    "telemetry.enableTelemetry": true,
+    "telemetry.enableCrashReporter": false,
     "git.decorations.enabled": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 180000,
@@ -171,7 +172,7 @@
     "omnisharp.enableEditorConfigSupport": false,
 
     // BASH
-    "[shellscript]": { "editor.defaultFormatter": "shakram02.bash-beautify" },
+    "[shellscript]": { "editor.defaultFormatter": "foxundermoon.shell-format" },
 
     //
     "[terraform]": { "editor.defaultFormatter": "hashicorp.terraform" },
@@ -195,6 +196,11 @@
         "**/.hg/store/**": true
     },
 
+    // WINDOW
+    "window.zoomLevel": 1,
+    "window.restoreFullscreen": true,
+    "window.titleBarStyle": "custom",
+
     // WORKBENCH
     "workbench.list.horizontalScrolling": true,
     "workbench.startupEditor": "none",
@@ -203,6 +209,7 @@
     "workbench.activityBar.visible": false,
     "workbench.sideBar.location": "right",
     "workbench.productIconTheme": "fluent-icons",
+    "workbench.iconTheme": "eq-material-theme-icons-ocean",
     "workbench.colorTheme": "Ayu Dark",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"
@@ -216,7 +223,5 @@
 
     // GAME ENGINES WINDOWS
     "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
-    "godot_tools.gdscript_lsp_server_port": 6005,
-    "workbench.iconTheme": "material-icon-theme",
-    "window.zoomLevel": 1
+    "godot_tools.gdscript_lsp_server_port": 6005
 }

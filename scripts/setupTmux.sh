@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-UTILS_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
-.  $UTILS_DIR/utils.sh
+SCRIPTS="$HOME/dotfiles/scripts"
+. $SCRIPTS/utils/utils.sh
 check_sudo
 
 function setup_tmux() {
@@ -15,7 +15,7 @@ function setup_tmux() {
             print_red '### DISTRO NOT SUPPORTED'
             exit 1
         fi
-    else 
+    else
         print_red '### TMUX ALREADY INSTALLED'
     fi
 

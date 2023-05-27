@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-UTILS_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
-.  $UTILS_DIR/utils.sh
+SCRIPTS="$HOME/dotfiles/scripts"
+. $SCRIPTS/utils/utils.sh
 check_sudo
 
 function setup_neovim() {
@@ -11,6 +11,7 @@ function setup_neovim() {
         print_green '### REMOVING VIM'
         if is_ubuntu; then
             sudo apt purge -y --auto-remove vim
+            sudo rm -rf "/usr/bin/vim"
         else
             print_red '### DISTRO NOT SUPPORTED'
             exit 1
@@ -20,16 +21,17 @@ function setup_neovim() {
     if [ ! -e "/snap/bin/nvim" ]; then
         print_green '### INSTALLING NEOVIM FROM SNAP'
         if_snap 'sudo snap install --edge nvim --classic'
-    else 
+    else
         print_red '### NEOVIM ALREADY INSTALLED'
     fi
 
     # sudo rm -rf "/bin/vi" && sudo ln "/snap/bin/nvim" "/snap/bin/vi"
 
+    sudo rm -rf "/usr/bin/vi"
     if_snap 'sudo snap alias nvim vi'
 
     nvim_config_array=(
-        $HOME/.config/nvim 
+        $HOME/.config/nvim
         $HOME/.local/share/nvim
         $HOME/.local/state/nvim
         $HOME/.cache/nvim

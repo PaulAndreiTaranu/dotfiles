@@ -1,8 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+P10K_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USER}.zsh"
+if [[ -r "$P10K_DIR" ]]; then
+    source "$P10K_DIR"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -108,16 +109,20 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 ## LSD alias
-alias ls="lsd"
-alias lt="lsd --tree"
-alias l="lsd -la"
+if [[ -e /usr/bin/lsd ]]; then
+    alias ls="lsd"
+    alias lt="lsd --tree"
+    alias l="lsd -la"
+fi
 
 # Docker alias
-alias d="docker"
-alias doccontainerprune="d stop $(d ps -aq) && d container prune --force"
-alias docsystemprune="docker system prune --force --all --volumes"
-alias dc="docker compose"
-alias dcrestart="docker compose down && docker compose up --build"
+if [[ -e /usr/bin/docker ]]; then
+    alias d="docker"
+    alias doccontainerprune="d stop $(d ps -aq) && d container prune --force"
+    alias docsystemprune="docker system prune --force --all --volumes"
+    alias dc="docker compose"
+    alias dcrestart="docker compose down && docker compose up --build"
+fi
 
 # Terraform
 alias terra="terraform"
@@ -153,10 +158,6 @@ alias update="sudo apt update -y --allow-insecure-repositories && sudo apt upgra
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # PATH
 
 # remove duplicat entries from $PATH
@@ -164,17 +165,24 @@ export NVM_DIR="$HOME/.nvm"
 # typeset -U PATH path
 # path+=  ("~/dotfiles/scripts/" "~/dotfiles/scripts/**/*/(N/)" "/root/bin" "~/.cargo/env")
 
-# pnpm
-export PNPM_HOME="/home/paul/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-# pnpm end
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
+# PNPM
+export PNPM_HOME="/home/paul/.local/share/pnpm"
+case ":$PATH:" in
+*":$PNPM_HOME:"*) ;;
+*) export PATH="$PNPM_HOME:$PATH" ;;
+esac
 
 # export PATH=$PATH$(find /home/$USER/dotfiles/scripts -type d -exec printf ":%s" {} +)
-export PATH=$PATH:/home/$USER/.cargo/env
+export PATH=$PATH:$HOME/.cargo/env
+export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:/root/bin
-export PATH=$PATH:/home/$USER/bin
-export PATH=$PATH:/home/$USER/.local/bin
 export PATH
 
-source '/home/paul/lib/azure-cli/az.completion'
+if [[ -e /usr/bin/az ]]; then
+    source '/home/paul/lib/azure-cli/az.completion'
+fi

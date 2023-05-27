@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-UTILS_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
-.  $UTILS_DIR/utils.sh
-.  $UTILS_DIR/setupNeovim.sh
-.  $UTILS_DIR/setupZsh.sh
-.  $UTILS_DIR/setupTmux.sh
+SCRIPTS="$HOME/dotfiles/scripts"
+. $SCRIPTS/utils/utils.sh
+. $SCRIPTS/setupNeovim.sh
+. $SCRIPTS/setupZsh.sh
+. $SCRIPTS/setupTmux.sh
 check_sudo
 
 print_green '### UPDATING SYSTEM'
@@ -13,6 +13,7 @@ sudo apt update && sudo apt upgrade -y
 print_green '### INSTALLING SOFTWARE'
 if is_ubuntu; then
     sudo apt -y install gcc curl wget git stow btop kitty
+    sudo apt -y install gnome-tweaks gnome-shell-extension-manager
 else
     print_red '### DISTRO NOT SUPPORTED'
     exit 1
@@ -33,16 +34,25 @@ files_to_remove=(
     $HOME/.bashrc $HOME/.bash_history $HOME/.bash_logout $HOME/.bash_profile
     $HOME/.profile
     $HOME/.viminfo
+    $HOME/.config/git
     $HOME/.gitconfig
 )
 remove_with_array "${files_to_remove[@]}"
-as_normal_user "mkdir $HOME/.config && cd $HOME/dotfiles && stow git kitty"
+as_normal_user "mkdir $HOME/.config/kitty $HOME/.config/git"
+as_normal_user "cd $HOME/dotfiles && stow git kitty"
 
 print_green '### CLEANARDO BB'
-as_normal_user "find $HOME/dotfiles/scripts -type f -iname "*.sh" -exec chmod +x {} \;"
+as_normal_user "find $HOME/dotfiles/scripts -type f -exec chmod +x {} \;"
+
+# Create links of scripts/bin to local bin
+as_normal_user "mkdir $HOME/.local/bin"
+for file in "$HOME/dotfiles/scripts/bin/*"; do
+    as_normal_user "ln -s $file $HOME/.local/bin"
+done
+
 if is_ubuntu; then
     sudo apt autoremove -y && sudo apt clean -y
 else
     print_red '### DISTRO NOT SUPPORTED'
-    exit 1 
+    exit 1
 fi

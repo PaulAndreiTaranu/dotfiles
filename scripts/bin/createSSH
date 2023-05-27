@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-UTILS_DIR=$( cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)
-.  $UTILS_DIR/utils.sh
+SCRIPTS="$HOME/dotfiles/scripts"
+. $SCRIPTS/utils/utils.sh
 
-print_green '### SETTING UP SSH'
-ssh-keygen -t ed25519 -f ~/.ssh/$(uname -n) -P "" -q
+print_green '### Creating new SSH Key'
+if [ -n "$1" ]; then
+    ssh-keygen -t ed25519 -f $HOME/.ssh/$1 -P "" -q
+else
+    ssh-keygen -t ed25519 -f $HOME/.ssh/$(uname -n) -P "" -q
+fi
 
 ### 1. SSH file with private key: config
 
