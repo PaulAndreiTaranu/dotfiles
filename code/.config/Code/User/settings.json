@@ -93,8 +93,6 @@
     // MISC
     "keyboard.dispatch": "keyCode", // Solve linux caps to esc bug
     "telemetry.telemetryLevel": "off",
-    "telemetry.enableTelemetry": true,
-    "telemetry.enableCrashReporter": false,
     "git.decorations.enabled": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 180000,
@@ -209,7 +207,7 @@
     "workbench.activityBar.visible": false,
     "workbench.sideBar.location": "right",
     "workbench.productIconTheme": "fluent-icons",
-    "workbench.iconTheme": "eq-material-theme-icons-ocean",
+    "workbench.iconTheme": "vscode-great-icons",
     "workbench.colorTheme": "Ayu Dark",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"

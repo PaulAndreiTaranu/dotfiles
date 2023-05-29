@@ -14,7 +14,7 @@ function setup_code() {
         print_red '### VSCODE ALREADY INSTALLED'
     fi
 
-    CODE_CONFIG="$HOME/.config/Code/User"
+    CODE_CONFIG="$HOME/.config/Code/User/"
     array_to_remove=(
         $CODE_CONFIG
     )

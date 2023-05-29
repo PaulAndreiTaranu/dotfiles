@@ -12,16 +12,28 @@ sudo apt update && sudo apt upgrade -y
 
 print_green '### INSTALLING SOFTWARE'
 if is_ubuntu; then
-    sudo apt -y install gcc curl wget git stow btop kitty
+    sudo apt -y install build-essential curl wget git stow btop kitty
     sudo apt -y install gnome-tweaks gnome-shell-extension-manager
 else
     print_red '### DISTRO NOT SUPPORTED'
     exit 1
 fi
 
-sudo wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
-sudo dpkg -i lsd_0.23.1_amd64.deb
-sudo rm lsd_0.23.1_amd64.deb
+if [ ! -e "/usr/bin/lsd" ]; then
+    print_green '### INSTALLING LSD'
+    sudo wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
+    sudo dpkg -i lsd_0.23.1_amd64.deb
+    sudo rm lsd_0.23.1_amd64.deb
+fi
+
+if [ ! -e "/usr/bin/lazygit" ]; then
+    print_green '### INSTALLING LAZYGIT'
+    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit /usr/bin
+    sudo rm -rf lazygit.tar.gz
+fi
 
 # Setting up imported configs
 setup_neovim
@@ -36,6 +48,7 @@ files_to_remove=(
     $HOME/.viminfo
     $HOME/.config/git
     $HOME/.gitconfig
+    $HOME/.sudo_as_admin_successful
 )
 remove_with_array "${files_to_remove[@]}"
 as_normal_user "mkdir $HOME/.config/kitty $HOME/.config/git"

@@ -1,9 +1,8 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-P10K_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${USER}.zsh"
-if [[ -r "$P10K_DIR" ]]; then
-    source "$P10K_DIR"
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 # If you come from bash you might have to change your $PATH.
@@ -113,6 +112,11 @@ if [[ -e /usr/bin/lsd ]]; then
     alias ls="lsd"
     alias lt="lsd --tree"
     alias l="lsd -la"
+fi
+
+if [[ -e /usr/bin/lazygit ]]; then
+    alias g="git"
+    alias gg="lazygit"
 fi
 
 # Docker alias
