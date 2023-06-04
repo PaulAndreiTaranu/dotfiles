@@ -172,7 +172,7 @@
     // BASH
     "[shellscript]": { "editor.defaultFormatter": "foxundermoon.shell-format" },
 
-    //
+    // Terraform
     "[terraform]": { "editor.defaultFormatter": "hashicorp.terraform" },
 
     "files.exclude": {

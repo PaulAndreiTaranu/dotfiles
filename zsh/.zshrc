@@ -174,13 +174,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# PNPM
-export PNPM_HOME="/home/paul/.local/share/pnpm"
-case ":$PATH:" in
-*":$PNPM_HOME:"*) ;;
-*) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 # export PATH=$PATH$(find /home/$USER/dotfiles/scripts -type d -exec printf ":%s" {} +)
 export PATH=$PATH:$HOME/.cargo/env
 export PATH=$PATH:$HOME/.local/bin
@@ -190,3 +183,11 @@ export PATH
 if [[ -e /usr/bin/az ]]; then
     source '/home/paul/lib/azure-cli/az.completion'
 fi
+
+# pnpm
+export PNPM_HOME="/home/paul/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

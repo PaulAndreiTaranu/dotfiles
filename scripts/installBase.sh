@@ -12,7 +12,7 @@ sudo apt update && sudo apt upgrade -y
 
 print_green '### INSTALLING SOFTWARE'
 if is_ubuntu; then
-    sudo apt -y install build-essential curl wget git stow btop kitty
+    sudo apt -y install build-essential curl wget ripgrep git stow btop kitty
     sudo apt -y install gnome-tweaks gnome-shell-extension-manager
 else
     print_red '### DISTRO NOT SUPPORTED'

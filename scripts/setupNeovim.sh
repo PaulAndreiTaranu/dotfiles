@@ -7,6 +7,15 @@ check_sudo
 function setup_neovim() {
     print_green '### SETTING UP NEOVIM'
 
+    PNPM_HOME="$HOME/.local/share/pnpm"
+    if [[ ! -d "$HOME/.nvm" ]]; then
+        print_red '### NODE NOT INSTALLED'
+        exit 1
+    elif [[ ! -d "$HOME/.local/share/pnpm" ]]; then
+        print_red '### PNPM NOT INSTALLED'
+        exit 1
+    fi
+
     if [ -e "/usr/bin/vim" ]; then
         print_green '### REMOVING VIM'
         if is_ubuntu; then
@@ -39,7 +48,7 @@ function setup_neovim() {
     remove_with_array "${nvim_config_array[@]}"
     as_normal_user "mkdir $HOME/.config/nvim && cd $HOME/dotfiles && stow nvim"
 
-    # Headless lazy.nvim install
+    print_green '### HEADLESS LAZY INSTALL'
     as_normal_user 'nvim --headless "+Lazy! sync" +qa'
 }
 
