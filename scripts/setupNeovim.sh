@@ -49,7 +49,8 @@ function setup_neovim() {
     as_normal_user "mkdir $HOME/.config/nvim && cd $HOME/dotfiles && stow nvim"
 
     print_green '### HEADLESS LAZY INSTALL'
-    as_normal_user 'nvim --headless "+Lazy! sync" +qa'
+    # as_normal_user 'nvim --headless "+Lazy! sync" +q'
+    as_normal_user 'nvim --headless "+TSInstallSync" +q'
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
