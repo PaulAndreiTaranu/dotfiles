@@ -12,7 +12,7 @@ sudo apt update && sudo apt upgrade -y
 
 print_green '### INSTALLING SOFTWARE'
 if is_ubuntu; then
-    sudo apt -y install build-essential curl wget ripgrep git stow btop kitty
+    sudo apt -y install build-essential curl wget ripgrep fd-find git stow btop kitty
     sudo apt -y install gnome-tweaks gnome-shell-extension-manager
 else
     print_red '### DISTRO NOT SUPPORTED'
@@ -43,19 +43,25 @@ setup_zsh
 print_green '### REMOVING USELESS DOTFILES && SETTING UP REMAINING DOTFILES'
 files_to_remove=(
     $HOME/.config/kitty
+    $HOME/.config/git
+    $HOME/.local/bin
+    $HOME/.gitconfig
     $HOME/.bashrc $HOME/.bash_history $HOME/.bash_logout $HOME/.bash_profile
     $HOME/.profile
     $HOME/.viminfo
-    $HOME/.config/git
-    $HOME/.gitconfig
     $HOME/.sudo_as_admin_successful
 )
 remove_with_array "${files_to_remove[@]}"
-as_normal_user "mkdir $HOME/.config/kitty $HOME/.config/git"
+as_normal_user "mkdir $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin"
 as_normal_user "cd $HOME/dotfiles && stow git kitty"
 
 print_green '### CLEANARDO BB'
 as_normal_user "find $HOME/dotfiles/scripts -type f -exec chmod +x {} \;"
+
+# Create link of fdfind to fd
+if [ -e "/usr/bin/fdfind" ]; then
+    as_normal_user "ln -s $(which fdfind) $HOME/.local/bin/fd"
+fi
 
 # Create links of scripts/bin to local bin
 as_normal_user "mkdir $HOME/.local/bin"

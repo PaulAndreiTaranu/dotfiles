@@ -21,6 +21,7 @@ function setup_neovim() {
         if is_ubuntu; then
             sudo apt purge -y --auto-remove vim
             sudo rm -rf "/usr/bin/vim"
+            sudo rm -rf "/usr/bin/vi"
         else
             print_red '### DISTRO NOT SUPPORTED'
             exit 1
@@ -49,8 +50,8 @@ function setup_neovim() {
     as_normal_user "mkdir $HOME/.config/nvim && cd $HOME/dotfiles && stow nvim"
 
     print_green '### HEADLESS LAZY INSTALL'
-    # as_normal_user 'nvim --headless "+Lazy! sync" +q'
-    as_normal_user 'nvim --headless "+TSInstallSync" +q'
+    as_normal_user 'nvim --headless "+Lazy! sync" +q'
+    # as_normal_user 'nvim --headless "+TSInstallSync" +q'
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then

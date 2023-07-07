@@ -39,16 +39,17 @@
     "editor.wordBasedSuggestions": false,
     "editor.wordBasedSuggestionsMode": "currentDocument",
     "editor.snippetSuggestions": "top",
+    "editor.linkedEditing": true,
 
     // EDITOR && PRETTIER
     "editor.wordWrap": "off",
-    "editor.wordWrapColumn": 119,
-    "prettier.printWidth": 119,
+    "editor.wordWrapColumn": 100,
+    "prettier.printWidth": 100,
     "editor.tabSize": 4,
     "prettier.tabWidth": 4,
 
     // PRETTIER
-    "prettier.arrowParens": "avoid",
+    "prettier.arrowParens": "always",
     "prettier.bracketSpacing": true,
     "prettier.endOfLine": "lf",
     "prettier.bracketSameLine": true,
@@ -208,7 +209,6 @@
     "workbench.sideBar.location": "right",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "Ayu Dark",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"
         // "editoreNumber.activeForeground": "#ffffff"
@@ -221,5 +221,6 @@
 
     // GAME ENGINES WINDOWS
     "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
-    "godot_tools.gdscript_lsp_server_port": 6005
+    "godot_tools.gdscript_lsp_server_port": 6005,
+    "workbench.colorTheme": "GitHub Dark Default"
 }
