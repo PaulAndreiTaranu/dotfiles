@@ -117,9 +117,14 @@
     "typescript.updateImportsOnFileMove.enabled": "always",
     "npm.fetchOnlinePackageInfo": false,
 
+    // HTML
     "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[xml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+    // JSON
     "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "json.format.enable": true,
+    "json.sortOnSave.enable": false,
 
     // PYTHON
     "[python]": { "editor.defaultFormatter": null },
@@ -199,6 +204,7 @@
     "window.zoomLevel": 1,
     "window.restoreFullscreen": true,
     "window.titleBarStyle": "custom",
+    "window.commandCenter": false,
 
     // WORKBENCH
     "workbench.list.horizontalScrolling": true,
@@ -222,5 +228,7 @@
     // GAME ENGINES WINDOWS
     "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
     "godot_tools.gdscript_lsp_server_port": 6005,
-    "workbench.colorTheme": "GitHub Dark Default"
+    "workbench.colorTheme": "GitHub Dark Default",
+    "markdown-preview-enhanced.previewTheme": "github-dark.css",
+    "markdown-preview-enhanced.codeBlockTheme": "darcula.css"
 }

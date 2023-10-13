@@ -15,7 +15,7 @@ MONGO_PASS=admin
 # MONGO-EXPRESS CONTAINER
 if [ ! "$(docker ps -q -f name=$MONGO_EXPRESS_NAME)" ]
 then
-    if [ "$(docker ps -aq -f status=exited -f name=$MONGO_EXPRESS_NAME)" ]; then
+    if [ "$(dockep ps -aq -f status=exited -f name=$MONGO_EXPRESS_NAME)" ]; then
         echo -e "${BRED}### Removing stopped container $MONGO_EXPRESS_NAME${NOCOLOR}" >&2
         # cleanup
         docker rm $MONGO_EXPRESS_NAME
