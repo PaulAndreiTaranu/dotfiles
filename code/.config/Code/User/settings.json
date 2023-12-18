@@ -36,7 +36,7 @@
     "editor.acceptSuggestionOnCommitCharacter": true,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.tabCompletion": "on",
-    "editor.wordBasedSuggestions": false,
+    "editor.wordBasedSuggestions": "off",
     "editor.wordBasedSuggestionsMode": "currentDocument",
     "editor.snippetSuggestions": "top",
     "editor.linkedEditing": true,
@@ -79,9 +79,6 @@
     "vim.sneak": true,
     "vim.useCtrlKeys": false,
     "vim.useSystemClipboard": true,
-
-    // ZEN
-    "zenMode.hideTabs": false,
     "zenMode.centerLayout": false,
     "zenMode.restore": true,
     "zenMode.hideLineNumbers": false,
@@ -127,12 +124,12 @@
     "json.sortOnSave.enable": false,
 
     // PYTHON
-    "[python]": { "editor.defaultFormatter": null },
+    "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
     "python.defaultInterpreterPath": "/usr/bin/python3",
-    "python.formatting.provider": "black",
-    "python.formatting.blackArgs": ["--line-length", "120"],
 
     // Notebook
+    "notebook.formatOnCellExecution": true,
+    "notebook.formatOnSave.enabled": true,
     "notebook.insertToolbarLocation": "notebookToolbar",
     "notebook.cellToolbarLocation": {
         "default": "right",
@@ -210,8 +207,9 @@
     "workbench.list.horizontalScrolling": true,
     "workbench.startupEditor": "none",
     "workbench.list.smoothScrolling": true,
-    "workbench.editorAssociations": { "*.ipynb": "jupyter-notebook" },
-    "workbench.activityBar.visible": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
     "workbench.sideBar.location": "right",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "vscode-great-icons",
@@ -230,5 +228,6 @@
     "godot_tools.gdscript_lsp_server_port": 6005,
     "workbench.colorTheme": "GitHub Dark Default",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "markdown-preview-enhanced.codeBlockTheme": "darcula.css"
+    "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
+    "workbench.activityBar.location": "hidden"
 }

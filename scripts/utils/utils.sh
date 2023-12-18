@@ -26,8 +26,8 @@ function check_sudo() {
 function remove_with_array() {
     arr=("$@")
     for i in "${arr[@]}"; do
-        as_normal_user "rm -rf $i"
         print_red "### Removing $i"
+        as_normal_user "rm -rf $i"
     done
 }
 
@@ -52,7 +52,7 @@ function is_ubuntu() {
 }
 
 #############################################
-# Deletes every element of the provided array
+# Check if snap is installed
 #
 # Example:
 #   snap 'sudo snap install --edge nvim --classic'
@@ -62,6 +62,5 @@ function if_snap() {
         $1
     else
         print_red '### SNAP NOT FOUND'
-        exit 1
     fi
 }

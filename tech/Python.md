@@ -12,11 +12,11 @@ install packages: `pipenv install flask black`<br/>
 
 settings:<br/>
 
--   `poetry config virtualenvs.in-project true`
+-   Creata .venv folder inside project: `poetry config virtualenvs.in-project true`
 
-create new project: `poetry new poe-test`<br/>
+create new project:<br/> `poetry new poe-test`<br/>
 activate virtual environment: `poetry shell`<br/>
-add dependencies: `poetry add requests`<br/>
-add dev dependencies: `poetry add -D black`<br/>
+add/remove dependencies: `poetry add/remove requests`<br/>
+add dev dependencies: `poetry add black --group (-G) dev`<br/>
 
 ### Data Science

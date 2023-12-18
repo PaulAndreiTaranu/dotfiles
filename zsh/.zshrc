@@ -145,6 +145,7 @@ alias pls="pnpm list"
 
 # Python alias
 alias poe="poetry"
+alias py="python3"
 
 # general alias
 alias t="btop"

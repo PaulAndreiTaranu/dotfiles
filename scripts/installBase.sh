@@ -2,9 +2,9 @@
 
 SCRIPTS="$HOME/dotfiles/scripts"
 . $SCRIPTS/utils/utils.sh
-. $SCRIPTS/setupNeovim.sh
-. $SCRIPTS/setupZsh.sh
-. $SCRIPTS/setupTmux.sh
+. $SCRIPTS/setups/setupZsh.sh
+. $SCRIPTS/setups/setupFont.sh
+. $SCRIPTS/setups/setupCode.sh
 check_sudo
 
 print_green '### UPDATING SYSTEM'
@@ -17,6 +17,11 @@ if is_ubuntu; then
 else
     print_red '### DISTRO NOT SUPPORTED'
     exit 1
+fi
+
+if [ ! -e "/snap/bin/brave" ]; then
+    print_green '### INSTALLING BRAVE BROWSER FROM SNAP'
+    if_snap 'sudo snap install --classic brave'
 fi
 
 if [ ! -e "/usr/bin/lsd" ]; then
@@ -36,9 +41,9 @@ if [ ! -e "/usr/bin/lazygit" ]; then
 fi
 
 # Setting up imported configs
-setup_neovim
-setup_tmux
 setup_zsh
+setup_font
+setup_code
 
 print_green '### REMOVING USELESS DOTFILES && SETTING UP REMAINING DOTFILES'
 files_to_remove=(
@@ -75,3 +80,6 @@ else
     print_red '### DISTRO NOT SUPPORTED'
     exit 1
 fi
+
+print_green '# Reminder: change keyboard shortcuts'
+print_green '# Reminder: install password manager'
