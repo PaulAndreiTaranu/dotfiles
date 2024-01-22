@@ -77,7 +77,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+
+function zvm_config() {
+    # Do the initialization when the script is sourced (i.e. Initialize instantly)
+    ZVM_INIT_MODE=sourcing
+    ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+    ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+}
+
+plugins=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -107,16 +115,22 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-## LSD alias
+# LSD alias
 if [[ -e /usr/bin/lsd ]]; then
     alias ls="lsd"
-    alias lt="lsd --tree"
+    alias lt="lsd --tree -la"
     alias l="lsd -la"
 fi
 
+# Git and LazyGit alias
 if [[ -e /usr/bin/lazygit ]]; then
     alias g="git"
     alias gg="lazygit"
+fi
+
+# Zellij alias
+if [[ -e /snap/bin/zellij ]]; then
+    alias z="zellij"
 fi
 
 # Docker alias
@@ -131,17 +145,24 @@ fi
 # Terraform
 alias terra="terraform"
 
-# Javascript alias
-alias p="pnpm"
-alias ps="pnpm start"
-alias pd="pnpm dev"
-alias pt="pnpm test"
-alias pi="pnpm install"
-alias pu="pnpm update --interactive --latest"
-alias pa="pnpm add"
-alias pad="pnpm add --save-dev"
-alias prm="pnpm remove"
-alias pls="pnpm list"
+# Podman Alias
+if [[ -e "/usr/bin/podman" ]]; then
+    alias pod='podman'
+fi
+
+# Javascript Alias
+if [[ -e "$HOME/.local/share/pnpm" ]]; then
+    alias p="pnpm"
+    alias ps="pnpm start"
+    alias pd="pnpm dev"
+    alias pt="pnpm test"
+    alias pi="pnpm install"
+    alias pu="pnpm update --interactive --latest"
+    alias pa="pnpm add"
+    alias pad="pnpm add --save-dev"
+    alias prm="pnpm remove"
+    alias pls="pnpm list"
+fi
 
 # Python alias
 alias poe="poetry"
@@ -159,35 +180,37 @@ alias sudopsql="sudo -i -u postgres psql"
 alias chmodscripts="find $HOME/dotfiles/scripts -type f -iname '*.sh' -exec chmod +x {} \;"
 alias update="sudo apt update -y --allow-insecure-repositories && sudo apt upgrade -y && sudo apt autoremove -y"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# PATH
+## PATH
 
 # remove duplicat entries from $PATH
 # zsh uses $path array along with $PATH
-# typeset -U PATH path
+typeset -U PATH path
 # path+=  ("~/dotfiles/scripts/" "~/dotfiles/scripts/**/*/(N/)" "/root/bin" "~/.cargo/env")
+# export PATH=$PATH$(find /home/$USER/dotfiles/scripts -type d -exec printf ":%s" {} +)
+path+="$HOME/.cargo/env"
+path+="$HOME/.local/bin"
+path+="/root/bin"
+path+="/usr/local/go/bin"
+
+## NodeJs Version Managers
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
-# export PATH=$PATH$(find /home/$USER/dotfiles/scripts -type d -exec printf ":%s" {} +)
-export PATH=$PATH:$HOME/.cargo/env
-export PATH=$PATH:$HOME/.local/bin
-export PATH=$PATH:/root/bin
-export PATH
-
-if [[ -e /usr/bin/az ]]; then
-    source '/home/paul/lib/azure-cli/az.completion'
+# N
+export N_PREFIX="$HOME/.local/bin/n"
+if [[ -e "$N_PREFIX/bin/n" ]]; then
+    path+="$HOME/.local/share/pnpm"
+    path+="$N_PREFIX/bin"
+    # [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 fi
 
-# pnpm
-export PNPM_HOME="/home/paul/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
+export PATH
+
+## SOURCING RANDOM STUFF
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

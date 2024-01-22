@@ -8,10 +8,7 @@ function setup_neovim() {
     print_green '### SETTING UP NEOVIM'
 
     PNPM_HOME="$HOME/.local/share/pnpm"
-    if [[ ! -d "$HOME/.nvm" ]]; then
-        print_red '### NODE NOT INSTALLED'
-        exit 1
-    elif [[ ! -d "$HOME/.local/share/pnpm" ]]; then
+    if [[ ! -d "$PNPM_HOME" ]]; then
         print_red '### PNPM NOT INSTALLED'
         exit 1
     fi
@@ -30,7 +27,7 @@ function setup_neovim() {
 
     if [ ! -e "/snap/bin/nvim" ]; then
         print_green '### INSTALLING NEOVIM FROM SNAP'
-        if_snap 'sudo snap install --edge nvim --classic'
+        if_snap 'sudo snap install nvim --classic'
     else
         print_red '### NEOVIM ALREADY INSTALLED'
     fi
@@ -49,8 +46,8 @@ function setup_neovim() {
     remove_with_array "${nvim_config_array[@]}"
     as_normal_user "mkdir $HOME/.config/nvim && cd $HOME/dotfiles && stow nvim"
 
-    print_green '### HEADLESS LAZY INSTALL'
-    as_normal_user 'nvim --headless "+Lazy! sync" +q'
+    # print_green '### HEADLESS LAZY INSTALL'
+    # as_normal_user 'nvim --headless "+Lazy! sync" +q'
     # as_normal_user 'nvim --headless "+TSInstallSync" +q'
 }
 

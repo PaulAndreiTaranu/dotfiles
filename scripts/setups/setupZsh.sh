@@ -41,6 +41,15 @@ function setup_zsh() {
         print_red '### POWERLEVEL10K ALREADY INSTALLED'
     fi
 
+    # Install zsh-vi-mode
+    ZSH_VI_MODE_DIR="$HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode"
+    if [[ ! -d "$ZSH_VI_MODE_DIR" ]]; then
+        print_green '### INSTALLING ZSH-VI-MODE PLUGIN'
+        as_normal_user "git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_VI_MODE_DIR"
+    else
+        print_red '### ZSH-VI-MODE ALREADY INSTALLED'
+    fi
+
     # Change default shell to zsh
     print_red '### CHANGE DEFAULT SHELL TO ZSH AND STOW CONFIG'
     sudo usermod --shell $(which zsh) $USER

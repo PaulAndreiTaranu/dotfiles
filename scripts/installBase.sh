@@ -24,6 +24,11 @@ if [ ! -e "/snap/bin/brave" ]; then
     if_snap 'sudo snap install --classic brave'
 fi
 
+if [ ! -e "/snap/bin/zellij" ]; then
+    print_green '### INSTALLING ZELLIJ FROM SNAP'
+    if_snap 'sudo snap install --classic zellij'
+fi
+
 if [ ! -e "/usr/bin/lsd" ]; then
     print_green '### INSTALLING LSD'
     sudo wget https://github.com/Peltoche/lsd/releases/download/0.23.1/lsd_0.23.1_amd64.deb
@@ -40,11 +45,6 @@ if [ ! -e "/usr/bin/lazygit" ]; then
     sudo rm -rf lazygit.tar.gz
 fi
 
-# Setting up imported configs
-setup_zsh
-setup_font
-setup_code
-
 print_green '### REMOVING USELESS DOTFILES && SETTING UP REMAINING DOTFILES'
 files_to_remove=(
     $HOME/.config/kitty
@@ -55,10 +55,19 @@ files_to_remove=(
     $HOME/.profile
     $HOME/.viminfo
     $HOME/.sudo_as_admin_successful
+    $HOME/Pictures
+    $HOME/Music
+    $HOME/Desktop
+    $HOME/Templates
 )
 remove_with_array "${files_to_remove[@]}"
 as_normal_user "mkdir $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin"
 as_normal_user "cd $HOME/dotfiles && stow git kitty"
+
+# Setting up imported configs
+setup_zsh
+setup_font
+setup_code
 
 print_green '### CLEANARDO BB'
 as_normal_user "find $HOME/dotfiles/scripts -type f -exec chmod +x {} \;"
