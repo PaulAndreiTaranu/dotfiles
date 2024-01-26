@@ -18,5 +18,8 @@ fi
 #     User paul
 #     IdentityFile C:\Users\paula\.ssh\ubuntuServer
 
+# Host github.com
+#     ForwardAgent yes
+
 ### 2. SSH file with public key: authorized_keys
 # ssh-rsa exampleAAAAB3NzaC1yc2E...
