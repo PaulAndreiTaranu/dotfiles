@@ -15,11 +15,9 @@ function setup_code() {
     fi
 
     CODE_CONFIG="$HOME/.config/Code/User/"
-    array_to_remove=(
-        $CODE_CONFIG
-    )
-    remove_with_array "${array_to_remove[@]}"
-    as_normal_user "mkdir $CODE_CONFIG && cd $HOME/dotfiles && stow code"
+    as_normal_user "rm -rf $CODE_CONFIG"
+    as_normal_user "mkdir -p $CODE_CONFIG"
+    as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" code"
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then

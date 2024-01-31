@@ -54,11 +54,9 @@ function setup_zsh() {
     print_red '### CHANGE DEFAULT SHELL TO ZSH AND STOW CONFIG'
     sudo usermod --shell $(which zsh) $USER
 
-    if [[ -e "$HOME/.zshrc" ]]; then
-        files_to_remove=($HOME/.zshrc $HOME/.zshrc.backup)
-        remove_with_array "${files_to_remove[@]}"
-        as_normal_user "cd $HOME/dotfiles && stow zsh"
-    fi
+	files_to_remove=($HOME/.zshrc $HOME/.zshrc.backup)
+	remove_with_array "${files_to_remove[@]}"
+	as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" zsh"
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then

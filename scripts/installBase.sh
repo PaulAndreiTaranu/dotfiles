@@ -5,6 +5,7 @@ SCRIPTS="$HOME/dotfiles/scripts"
 . $SCRIPTS/setups/setupZsh.sh
 . $SCRIPTS/setups/setupFont.sh
 . $SCRIPTS/setups/setupCode.sh
+. $SCRIPTS/setups/setupUbuntuKeybindings.sh
 check_sudo
 
 print_green '### UPDATING SYSTEM'
@@ -14,6 +15,7 @@ print_green '### INSTALLING SOFTWARE'
 if is_ubuntu; then
     sudo apt -y install build-essential curl wget ripgrep fd-find git stow btop kitty
     sudo apt -y install gnome-tweaks gnome-shell-extension-manager
+    sudo apt -y install ubuntu-wallpapers-lunar
 else
     print_red '### DISTRO NOT SUPPORTED'
     exit 1
@@ -42,7 +44,7 @@ if [ ! -e "/usr/bin/lazygit" ]; then
     curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
     tar xf lazygit.tar.gz lazygit
     sudo install lazygit /usr/bin
-    sudo rm -rf lazygit.tar.gz
+    sudo rm -rf lazygit.tar.gz lazygit
 fi
 
 print_green '### REMOVING USELESS DOTFILES && SETTING UP REMAINING DOTFILES'
@@ -57,12 +59,13 @@ files_to_remove=(
     $HOME/.sudo_as_admin_successful
     $HOME/Pictures
     $HOME/Music
+    $HOME/Videos
     $HOME/Desktop
     $HOME/Templates
 )
 remove_with_array "${files_to_remove[@]}"
-as_normal_user "mkdir $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin"
-as_normal_user "cd $HOME/dotfiles && stow git kitty"
+as_normal_user "mkdir -p $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin"
+as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" git kitty"
 
 # Setting up imported configs
 setup_zsh

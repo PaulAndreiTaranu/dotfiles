@@ -11,16 +11,6 @@
         "when": "terminalFocus"
     },
     {
-        "key": "ctrl+h",
-        "command": "workbench.action.terminal.focusPrevious",
-        "when": "terminalFocus && terminalProcessSupported"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.terminal.focusNext",
-        "when": "terminalFocus && terminalProcessSupported"
-    },
-    {
         "key": "alt+h",
         "command": "workbench.action.terminal.focusPreviousPane",
         "when": "terminalFocus && terminalProcessSupported"
@@ -57,11 +47,6 @@
     },
 
     // EDITOR
-    {
-        "key": "space",
-        "command": "workbench.action.files.save",
-        "when": "editorFocus && vim.active && !inDebugRepl && vim.mode != 'Insert' && !findInputFocussed"
-    },
     {
         "key": "ctrl+o",
         "command": "workbench.action.gotoSymbol",

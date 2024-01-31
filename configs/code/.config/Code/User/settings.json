@@ -75,10 +75,28 @@
 
     // VIM
     "vim.gdefault": true,
-    "vim.leader": ",",
+    "vim.leader": "<space>",
     "vim.sneak": true,
     "vim.useCtrlKeys": false,
     "vim.useSystemClipboard": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>", "s"],
+            "commands": [":w"]
+        },
+        {
+            "before": ["<leader>", "h"],
+            "commands": [":bprevious"]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "commands": [":bnext"]
+        }
+    ],
+    // To improve performance
+    "extensions.experimental.affinity": {
+        "vscodevim.vim": 1
+    },
     "zenMode.centerLayout": false,
     "zenMode.restore": true,
     "zenMode.hideLineNumbers": false,

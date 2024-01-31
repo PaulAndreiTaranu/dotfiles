@@ -44,7 +44,8 @@ function setup_neovim() {
         $HOME/.cache/nvim
     )
     remove_with_array "${nvim_config_array[@]}"
-    as_normal_user "mkdir $HOME/.config/nvim && cd $HOME/dotfiles && stow nvim"
+    as_normal_user "mkdir -p $HOME/.config/nvim"
+    as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" nvim"
 
     # print_green '### HEADLESS LAZY INSTALL'
     # as_normal_user 'nvim --headless "+Lazy! sync" +q'
