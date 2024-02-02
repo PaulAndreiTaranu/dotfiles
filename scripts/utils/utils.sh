@@ -35,6 +35,10 @@ function as_normal_user() {
     sudo -H -u $USER bash -c "$1"
 }
 
+function as_fish_user() {
+    sudo -H -u $USER fish -c "$1"
+}
+
 function as_pnpm_loaded() {
     sudo -H -u $USER zsh -c "source $HOME/.zshrc && $1"
 }

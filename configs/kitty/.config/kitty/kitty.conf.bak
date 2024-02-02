@@ -2239,6 +2239,6 @@ map ctrl+v       paste_from_clipboard
 
 
 # BEGIN_KITTY_THEME
-# Cyberpunk
+# GitHub Dark High Contrast
 include current-theme.conf
 # END_KITTY_THEME

@@ -14,7 +14,7 @@ sudo apt update && sudo apt upgrade -y
 print_green '### INSTALLING SOFTWARE'
 if is_ubuntu; then
     sudo apt -y install build-essential curl wget ripgrep fd-find git stow btop kitty
-    sudo apt -y install gnome-tweaks gnome-shell-extension-manager
+    sudo apt -y install gnome-tweaks gnome-shell-extension-manager wl-clipboard
     sudo apt -y install ubuntu-wallpapers-lunar
 else
     print_red '### DISTRO NOT SUPPORTED'
@@ -68,7 +68,7 @@ as_normal_user "mkdir -p $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin"
 as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" git kitty"
 
 # Setting up imported configs
-setup_zsh
+setup_fish
 setup_font
 setup_code
 
@@ -80,18 +80,6 @@ if [ -e "/usr/bin/fdfind" ]; then
     as_normal_user "ln -s $(which fdfind) $HOME/.local/bin/fd"
 fi
 
-# Create links of scripts/bin to local bin
-as_normal_user "mkdir $HOME/.local/bin"
-for file in "$HOME/dotfiles/scripts/bin/*"; do
-    as_normal_user "ln -s $file $HOME/.local/bin"
-done
-
-if is_ubuntu; then
-    sudo apt autoremove -y && sudo apt clean -y
-else
-    print_red '### DISTRO NOT SUPPORTED'
-    exit 1
-fi
-
-print_green '# Reminder: change keyboard shortcuts'
-print_green '# Reminder: install password manager'
+sudo apt autoremove -y && sudo apt clean -y
+print_green '# Reminder: Change to Wayland'
+print_green '# Reminder: Install password manager'
