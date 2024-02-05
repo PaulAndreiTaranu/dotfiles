@@ -47,9 +47,10 @@ if [ ! -e "/usr/bin/lazygit" ]; then
     sudo rm -rf lazygit.tar.gz lazygit
 fi
 
-print_green '### REMOVING USELESS DOTFILES && SETTING UP REMAINING DOTFILES'
+print_green '### REMOVING USELESS FILES'
 files_to_remove=(
     $HOME/.config/kitty
+    $HOME/.config/zellij
     $HOME/.config/git
     $HOME/.local/bin
     $HOME/.gitconfig
@@ -64,8 +65,8 @@ files_to_remove=(
     $HOME/Templates
 )
 remove_with_array "${files_to_remove[@]}"
-as_normal_user "mkdir -p $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin"
-as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" git kitty"
+as_normal_user "mkdir -p $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin $HOME/.config/zellij"
+as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" git kitty zellij"
 
 # Setting up imported configs
 setup_fish

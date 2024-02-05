@@ -10,16 +10,16 @@ else
     ssh-keygen -t ed25519 -f $HOME/.ssh/$(uname -n) -P "" -q
 fi
 
-### 1. SSH file with private key: config
+### Create .ssh/config file and set each server:
 
 # Host ubuntuServer
 #     HostName 127.0.0.1
 #     Port 4099
 #     User paul
-#     IdentityFile C:\Users\paula\.ssh\ubuntuServer
+#     IdentityFile .ssh/privateKey
 
 # Host github.com
 #     ForwardAgent yes
 
-### 2. SSH file with public key: authorized_keys
+### Or create authorized_keys file and put public keys:
 # ssh-rsa exampleAAAAB3NzaC1yc2E...

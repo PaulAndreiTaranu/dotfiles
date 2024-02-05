@@ -81,10 +81,6 @@
     "vim.useSystemClipboard": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
-            "before": ["<leader>", "s"],
-            "commands": [":w"]
-        },
-        {
             "before": ["<leader>", "h"],
             "commands": [":bprevious"]
         },
@@ -231,6 +227,7 @@
         "*.ipynb": "jupyter-notebook"
     },
     "workbench.sideBar.location": "right",
+    "workbench.activityBar.location": "top",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "vscode-great-icons",
     "workbench.colorCustomizations": {
@@ -248,6 +245,5 @@
     "godot_tools.gdscript_lsp_server_port": 6005,
     "workbench.colorTheme": "GitHub Dark Default",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
-    "workbench.activityBar.location": "top"
+    "markdown-preview-enhanced.codeBlockTheme": "darcula.css"
 }

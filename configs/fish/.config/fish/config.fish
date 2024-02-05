@@ -23,6 +23,7 @@ if status is-interactive
     alias lt='lsd -la --tree'
     alias md="mkdir -p"
     alias zz='zellij'
+    alias za='zellij a --force-run-commands'
 
     # GIT Alias
     alias g='git'
@@ -42,6 +43,7 @@ if status is-interactive
 
     # Python alias
     alias poe="poetry"
+    alias poed="poetry add -G dev"
     alias py="python3"
 
     # general alias
