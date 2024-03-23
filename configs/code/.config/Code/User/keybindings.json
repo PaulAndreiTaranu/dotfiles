@@ -75,5 +75,9 @@
         "key": "alt+k",
         "command": "selectPrevSuggestion",
         "when": "suggestWidgetMultipleSuggestions && suggestWidgetVisible && textInputFocus"
+    },
+    {
+        "key": "ctrl+shift+enter",
+        "command": "jupyter.restartkernelandrunallcells"
     }
 ]

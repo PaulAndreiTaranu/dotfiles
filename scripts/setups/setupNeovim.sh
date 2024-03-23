@@ -7,11 +7,11 @@ check_sudo
 function setup_neovim() {
     print_green '### SETTING UP NEOVIM'
 
-    PNPM_HOME="$HOME/.local/share/pnpm"
-    if [[ ! -d "$PNPM_HOME" ]]; then
-        print_red '### PNPM NOT INSTALLED'
-        exit 1
-    fi
+    # PNPM_HOME="$HOME/.local/share/pnpm"
+    # if [[ ! -d "$PNPM_HOME" ]]; then
+    #     print_red '### PNPM NOT INSTALLED'
+    #     exit 1
+    # fi
 
     if [ -e "/usr/bin/vim" ]; then
         print_green '### REMOVING VIM'
@@ -32,8 +32,6 @@ function setup_neovim() {
         print_red '### NEOVIM ALREADY INSTALLED'
     fi
 
-    # sudo rm -rf "/bin/vi" && sudo ln "/snap/bin/nvim" "/snap/bin/vi"
-
     sudo rm -rf "/usr/bin/vi"
     if_snap 'sudo snap alias nvim vi'
 
@@ -47,8 +45,8 @@ function setup_neovim() {
     as_normal_user "mkdir -p $HOME/.config/nvim"
     as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" nvim"
 
-    # print_green '### HEADLESS LAZY INSTALL'
-    # as_normal_user 'nvim --headless "+Lazy! sync" +q'
+    print_green '### HEADLESS LAZY INSTALL'
+    as_normal_user 'nvim --headless "+Lazy! sync" +q'
     # as_normal_user 'nvim --headless "+TSInstallSync" +q'
 }
 

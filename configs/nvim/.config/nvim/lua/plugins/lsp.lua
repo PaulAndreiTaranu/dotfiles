@@ -5,8 +5,10 @@ return {
         event = { "BufReadPre", "BufNewFile" },
 
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            -- Automatically install LSPs and related tools to stdpath for Neovim
+            'williamboman/mason.nvim',
+            'williamboman/mason-lspconfig.nvim',
+            'WhoIsSethDaniel/mason-tool-installer.nvim',
         },
 
         config = function()

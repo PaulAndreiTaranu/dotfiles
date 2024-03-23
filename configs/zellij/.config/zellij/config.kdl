@@ -9,15 +9,16 @@ keybinds {
         unbind "Ctrl b"
         // general stuff
         bind "Alt n" { NewTab; SwitchToMode "Normal"; }
-        bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
-        bind "Alt w" { ToggleFloatingPanes;}
+        bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
+        bind "Alt d" { Detach; }
+        bind "Alt w" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt t" { ToggleFloatingPanes;}
         bind "Alt h" { MoveFocusOrTab "Left"; }
         bind "Alt l" { MoveFocusOrTab "Right"; }
         bind "Alt j" { MoveFocus "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
         bind "Alt +" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
-        bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "Alt o" {
             LaunchOrFocusPlugin "zellij:session-manager" {
                 floating true
@@ -242,7 +243,7 @@ on_force_close "detach"
 //    - true
 //    - false (Default)
 //
-// simplified_ui true
+simplified_ui false
 
 // Choose the path to the default shell that zellij will use for opening new panes
 // Default: $SHELL
@@ -258,7 +259,7 @@ on_force_close "detach"
 //   - true (default)
 //   - false
 //
-// pane_frames true
+pane_frames false
 
 // Toggle between having Zellij lay out panes according to a predefined set of layouts whenever possible
 // Options:
@@ -272,13 +273,13 @@ on_force_close "detach"
 //   - true (default)
 //   - false
 //
-// session_serialization false
+session_serialization false
 
 // Whether pane viewports are serialized along with the session, default is false
 // Options:
 //   - true
 //   - false (default)
-// serialize_pane_viewport true
+serialize_pane_viewport true
 
 // Scrollback lines to serialize along with the pane viewport when serializing sessions, 0
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
@@ -356,7 +357,7 @@ theme "retro-wave"
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
@@ -370,7 +371,7 @@ theme "retro-wave"
 //   - true (default)
 //   - false
 //
-// mouse_mode false
+// mouse_mode true
 
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -387,7 +388,7 @@ theme "retro-wave"
 // Examples:
 //
 // copy_command "xclip -selection clipboard" // x11
-// copy_command "wl-copy"                    // wayland
+copy_command "wl-copy"                    // wayland
 // copy_command "pbcopy"                     // osx
 
 // Choose the destination for copied text
@@ -397,12 +398,12 @@ theme "retro-wave"
 //   - system (default)
 //   - primary
 //
-// copy_clipboard "primary"
+copy_clipboard "primary"
 
 // Enable or disable automatic copy (and clear) of selection when releasing mouse
 // Default: true
 //
-// copy_on_select false
+copy_on_select true
 
 // Path to the default editor to use to edit pane scrollbuffer
 // Default: $EDITOR or $VISUAL
@@ -428,4 +429,4 @@ theme "retro-wave"
 // May need to be disabled for certain unsupported terminals
 // Default: true
 //
-// styled_underlines false
+styled_underlines true

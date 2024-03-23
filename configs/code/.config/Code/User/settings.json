@@ -81,6 +81,14 @@
     "vim.useSystemClipboard": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
+            "before": ["<leader>", "s"],
+            "commands": [":w"]
+        },
+        {
+            "before": ["<leader>", "w"],
+            "commands": [":q"]
+        },
+        {
             "before": ["<leader>", "h"],
             "commands": [":bprevious"]
         },
@@ -96,6 +104,7 @@
     "zenMode.centerLayout": false,
     "zenMode.restore": true,
     "zenMode.hideLineNumbers": false,
+    "zenMode.fullScreen": true,
 
     // SECURITY
     "security.workspace.trust.banner": "never",
@@ -118,7 +127,7 @@
     "emmet.triggerExpansionOnTab": true,
 
     // PROGRAMMING LANGUAGES
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": null,
 
     // TS/JS
     "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -245,5 +254,6 @@
     "godot_tools.gdscript_lsp_server_port": 6005,
     "workbench.colorTheme": "GitHub Dark Default",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "markdown-preview-enhanced.codeBlockTheme": "darcula.css"
+    "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
+    "jupyter.askForKernelRestart": false
 }

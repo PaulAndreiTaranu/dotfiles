@@ -23,6 +23,8 @@ if status is-interactive
     alias lt='lsd -la --tree'
     alias md="mkdir -p"
     alias zz='zellij'
+    alias zs='zellij -s'
+    alias zd='zellij kill-all-sessions -y && zellij delete-all-sessions -y'
     alias za='zellij a --force-run-commands'
 
     # GIT Alias
@@ -46,12 +48,18 @@ if status is-interactive
     alias poed="poetry add -G dev"
     alias py="python3"
 
-    # general alias
+    # General alias
     alias t="btop"
     alias r="reset"
     alias j="clear && journalctl --since -1m"
 
-    ## Shortcuts
+    # DEVOPS
+    alias pod="podman"
+    alias podi="podman image"
+    alias podc="podman container"
+    alias podprune="podman system prune --all --force && podman rmi --all"
+
+    # Shortcuts
     alias sudopsql="sudo -i -u postgres psql"
     alias chmodscripts="find $HOME/dotfiles/scripts -type f -iname '*.sh' -exec chmod +x {} \;"
     alias update="sudo apt update -y --allow-insecure-repositories && sudo apt upgrade -y && sudo apt autoremove -y"
