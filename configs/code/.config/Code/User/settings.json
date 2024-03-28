@@ -255,5 +255,6 @@
     "workbench.colorTheme": "GitHub Dark Default",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
-    "jupyter.askForKernelRestart": false
+    "jupyter.askForKernelRestart": false,
+    "explorer.confirmPasteNative": false
 }

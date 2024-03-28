@@ -28,4 +28,4 @@ vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<C-b>", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 
 -- Quit
-vim.keymap.set("n", "<leader>z", "<cmd>qa<cr>", { desc = "Quit all" })
+vim.keymap.set("n", "<leader>z", "<cmd>qa!<cr>", { desc = "Quit all" })

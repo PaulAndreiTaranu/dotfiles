@@ -60,7 +60,7 @@ return {
                     preview_cutoff = 120,
                   },
                   file_sorter = require("telescope.sorters").get_fuzzy_file,
-                  file_ignore_patterns = { "node_modules" },
+                  file_ignore_patterns = { "node_modules", ".git" },
                   generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
                   path_display = { "truncate" },
                   winblend = 0,
@@ -73,6 +73,11 @@ return {
                   qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
                   -- Developer configurations: Not meant for general override
                   buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+            },
+            pickers = {
+                find_files = {
+                    hidden = true
+                }
             },
             extensions = {
                 file_browser = {
@@ -133,7 +138,7 @@ return {
         vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files)
         vim.keymap.set('n', '<leader>ss', telebuiltin.builtin)
         vim.keymap.set('n', '<leader>gf', telebuiltin.git_files)
-        vim.keymap.set('n', '<leader>sf', telebuiltin.find_files)
+        vim.keymap.set('n', '<leader>f', telebuiltin.find_files)
         vim.keymap.set('n', '<leader>sh', telebuiltin.help_tags)
         vim.keymap.set('n', '<leader>sw', telebuiltin.grep_string)
         vim.keymap.set('n', '<leader>sg', telebuiltin.live_grep)
