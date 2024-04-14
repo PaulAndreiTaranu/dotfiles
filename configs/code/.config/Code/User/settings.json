@@ -121,6 +121,7 @@
     "extensions.closeExtensionDetailsOnViewChange": true,
     "extensions.ignoreRecommendations": true,
     "explorer.confirmDelete": false,
+    "explorer.confirmPasteNative": false,
     "explorer.confirmDragAndDrop": false,
     "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
     "emmet.showSuggestionsAsSnippets": true,
@@ -150,7 +151,8 @@
     "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
     "python.defaultInterpreterPath": "/usr/bin/python3",
 
-    // Notebook
+    // Notebook / Jupyter
+    "jupyter.askForKernelRestart": false,
     "notebook.formatOnCellExecution": true,
     "notebook.formatOnSave.enabled": true,
     "notebook.insertToolbarLocation": "notebookToolbar",
@@ -239,6 +241,7 @@
     "workbench.activityBar.location": "top",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "vscode-great-icons",
+    "workbench.colorTheme": "GitHub Dark Default",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"
         // "editoreNumber.activeForeground": "#ffffff"
@@ -252,9 +255,6 @@
     // GAME ENGINES WINDOWS
     "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
     "godot_tools.gdscript_lsp_server_port": 6005,
-    "workbench.colorTheme": "GitHub Dark Default",
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
-    "jupyter.askForKernelRestart": false,
-    "explorer.confirmPasteNative": false
 }

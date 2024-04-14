@@ -5,7 +5,6 @@ SCRIPTS="$HOME/dotfiles/scripts"
 . $SCRIPTS/setups/setupZsh.sh
 . $SCRIPTS/setups/setupFont.sh
 . $SCRIPTS/setups/setupCode.sh
-. $SCRIPTS/setups/setupUbuntuKeybindings.sh
 check_sudo
 
 print_green '### UPDATING SYSTEM'
@@ -84,3 +83,4 @@ fi
 sudo apt autoremove -y && sudo apt clean -y
 print_green '# Reminder: Change to Wayland'
 print_green '# Reminder: Install password manager'
+print_green '# Reminder: SETUP ubuntu keybindings'

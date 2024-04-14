@@ -25,7 +25,7 @@ function setup_fish() {
     fi
 
     print_green '### INSTALLING STARSHIP PROMPT'
-    as_normal_user "curl -sS https://starship.rs/install.sh | sh"
+    sudo "curl -sS https://starship.rs/install.sh | sh"
 
     # Change default shell to fish
     print_red '### CHANGE DEFAULT SHELL TO FISH AND STOW CONFIG'

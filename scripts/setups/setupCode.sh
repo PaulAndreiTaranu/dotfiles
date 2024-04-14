@@ -14,6 +14,14 @@ function setup_code() {
         print_red '### VSCODE ALREADY INSTALLED'
     fi
 
+    # Install extensions
+    as_normal_user "code --install-extension miguelsolorio.fluent-icons"
+    as_normal_user "code --install-extension emmanuelbeziat.vscode-great-icons"
+    as_normal_user "code --install-extension vscodevim.vim"
+    as_normal_user "code --install-extension foxundermoon.shell-format"
+    as_normal_user "code --install-extension esbenp.prettier-vscode"
+    as_normal_user "code --install-extension GitHub.github-vscode-theme"
+
     CODE_CONFIG="$HOME/.config/Code/User/"
     as_normal_user "rm -rf $CODE_CONFIG"
     as_normal_user "mkdir -p $CODE_CONFIG"
