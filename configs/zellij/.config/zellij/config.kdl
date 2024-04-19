@@ -292,67 +292,25 @@ serialize_pane_viewport true
 // Once these themes are defined, one of them should to be selected in the "theme" section of this file
 //
 themes {
-    dracula {
-        fg 248 248 242
-        bg 40 42 54
-        red 255 85 85
-        green 80 250 123
-        yellow 241 250 140
-        blue 98 114 164
-        magenta 255 121 198
-        orange 255 184 108
-        cyan 139 233 253
-        black 0 0 0
-        white 255 255 255
-    }
-
-    cyber-noir {
-        bg "#0b0e1a" // Dark Blue
-        fg "#91f3e4" // Teal
-        red "#ff578d" // Hot Pink
-        green "#00ff00" // Neon Green
-        blue "#3377ff" // Electric Blue
-        yellow "#ffd700" // Cyber Yellow
-        magenta "#ff00ff" // Neon Purple
-        orange "#ff7f50" // Cyber Orange
-        cyan "#00e5e5" // Cyan
-        black "#000000" // Black
-        white "#91f3e4" // Teal
-    }
-
-    blade-runner {
-        bg "#1a1a1a" // Dark Gray
-        fg "#2bbff4" // Neon Blue
-        red "#ff355e" // Neon Pink
-        green "#00ff00" // Neon Green
-        blue "#00d9e3" // Electric Blue
-        yellow "#ffe600" // Neon Yellow
-        magenta "#ff00ff" // Neon Purple
-        orange "#ff8c0d" // Cyber Orange
-        cyan "#00e5e5" // Cyan
-        black "#000000" // Black
-        white "#ffffff" // White
-    }
-
-    retro-wave {
-        bg "#1a1a1a" // Dark Gray
-        fg "#ff9900" // Retro Orange
-        red "#ff355e" // Neon Pink
-        green "#00ff00" // Neon Green
-        blue "#00d9e3" // Electric Blue
-        yellow "#ffe600" // Neon Yellow
-        magenta "#ff00ff" // Neon Purple
-        orange "#ff6611" // Retro Red
-        cyan "#00e5e5" // Cyan
-        black "#000000" // Black
-        white "#ffffff" // White
+    rose-pine {
+            bg "#403d52"
+            fg "#e0def4"
+            red "#eb6f92"
+            green "#31748f"
+            blue "#9ccfd8"
+            yellow "#f6c177"
+            magenta "#c4a7e7"
+            orange "#fe640b"
+            cyan "#ebbcba"
+            black "#0a0c10"
+            white "#e0def4"
     }
 }
 
 // Choose the theme that is specified in the themes section.
 // Default: default
 //
-theme "retro-wave"
+theme "rose-pine"
 
 // The name of the default layout to load on startup
 // Default: "default"
