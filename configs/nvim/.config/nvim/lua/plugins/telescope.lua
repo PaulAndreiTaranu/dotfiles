@@ -20,6 +20,7 @@ return {
 	config = function()
 		local telescope = require("telescope")
 		local telebuiltin = require("telescope.builtin")
+		vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#1f1d2e", fg = "#e0def4", bold = true })
 
 		telescope.setup({
 			defaults = {
@@ -33,14 +34,14 @@ return {
 				},
 				vimgrep_arguments = {
 					"rg",
-					"-L",
 					"--color=never",
-					"--no-heading",
-					"--with-filename",
-					"--line-number",
-					"--column",
-					"--smart-case",
-					"--hidden",
+					"--follow", -- Follow symbolic links
+					"--hidden", -- Search for hidden files
+					"--no-heading", -- Don't group matches by each file
+					"--with-filename", -- Print the file path with the matched lines
+					"--line-number", -- Show line numbers
+					"--column", -- Show column numbers
+					"--smart-case", -- Smart case search
 				},
 				prompt_prefix = "   ",
 				selection_caret = "  ",
@@ -62,7 +63,7 @@ return {
 					preview_cutoff = 120,
 				},
 				file_sorter = require("telescope.sorters").get_fuzzy_file,
-				file_ignore_patterns = { "node_modules", ".git" },
+				file_ignore_patterns = { "^.git/", "^node_modules/", "^vendor/", ".venv/", "__pycache__/" },
 				generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 				path_display = { "truncate" },
 				winblend = 0,
@@ -80,14 +81,26 @@ return {
 				find_files = {
 					hidden = true,
 					find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
+					-- find_command = {
+					-- 	"rg",
+					-- 	"--files",
+					-- 	"--color=never",
+					-- 	"--follow", -- Follow symbolic links
+					-- 	"--hidden", -- Search for hidden files
+					-- 	"--no-heading", -- Don't group matches by each file
+					-- 	"--with-filename", -- Print the file path with the matched lines
+					-- 	"--line-number", -- Show line numbers
+					-- 	"--column", -- Show column numbers
+					-- 	"--smart-case", -- Smart case search
+					-- },
 					initial_mode = "insert",
 				},
 			},
 			extensions = {
 				file_browser = {
+					hidden = true,
 					-- disables netrw and use telescope-file-browser in its place
 					hijack_netrw = true,
-					hidden = true,
 				},
 			},
 		})
