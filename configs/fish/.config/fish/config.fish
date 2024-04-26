@@ -67,9 +67,15 @@ end
 
 
 
+# PATH
 fish_add_path $HOME/dotfiles/scripts/bin
 fish_add_path $HOME/.local/bin
 
 starship init fish | source
 
-set -x N_PREFIX "$HOME/n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+# NODE & PNPM
+set -x N_PREFIX "$HOME/.local/bin/n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_PREFIX/bin"
+set -gx PNPM_HOME "/home/paul/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
