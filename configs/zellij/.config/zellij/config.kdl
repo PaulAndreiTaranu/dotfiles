@@ -371,7 +371,7 @@ copy_on_select true
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
 // or should each user have their own cursor (false)
-// Default: false
+// Default: false07417543471
 //
 // mirror_session true
 

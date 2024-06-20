@@ -141,13 +141,43 @@ return {
 
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "black" },
+				sh = { "beautysh" },
 				-- Conform can also run multiple formatters sequentially
-				-- python = { "isort", "black" },
-				--
-				-- You can use a sub-list to tell conform to run *until* a formatter
-				-- is found.
-				-- javascript = { { "prettierd", "prettier" } },
+				python = { "isort", "black" },
+				-- You can use a sub-list to tell conform to run *until* a formatter is found.
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
+				svelte = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
+				json = { "prettier" },
+				yaml = { "prettier" },
+				markdown = { "prettier" },
+				graphql = { "prettier" },
+				liquid = { "prettier" },
+			},
+
+			formatters = {
+				prettier = {
+					prepend_args = {
+						"--no-semi",
+						"--tab-width",
+						"4",
+						"--print-width",
+						"100",
+						"--bracket-same-line",
+						"--single-quote",
+						"--jsx-single-quote",
+						"--arrow-parens",
+						"always",
+						"--end-of-line",
+						"lf",
+						"--prose-wrap",
+						"always",
+					},
+				},
 			},
 		},
 	},

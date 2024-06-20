@@ -134,6 +134,7 @@ Windows = "󰍲 "
 
 [package]
 symbol = "󰏗 "
+disabled = true
 
 [perl]
 symbol = " "

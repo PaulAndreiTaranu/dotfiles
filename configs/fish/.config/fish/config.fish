@@ -58,6 +58,11 @@ if status is-interactive
     alias podi="podman image"
     alias podc="podman container"
     alias podprune="podman system prune --all --force && podman rmi --all"
+    alias doc="docker"
+    alias doci="docker image"
+    alias doccontainerprune="docker stop (d ps -aq) && d container prune --force"
+    alias docsystemprune="docker system prune --force --all --volumes"
+
 
     # Shortcuts
     alias sudopsql="sudo -i -u postgres psql"

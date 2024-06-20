@@ -123,8 +123,9 @@ return {
 			--    https://github.com/pmizio/typescript-tools.nvim
 			--
 			-- But for many setups, the LSP (`tsserver`) will work just fine
-			-- tsserver = {},
-			--
+			tsserver = {},
+
+			emmet_language_server = {},
 
 			lua_ls = {
 				-- cmd = {...},
@@ -136,7 +137,10 @@ return {
 							callSnippet = "Replace",
 						},
 						-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-						-- diagnostics = { disable = { 'missing-fields' } },
+						diagnostics = {
+							disable = { "missing-fields" },
+							globals = { "vim" },
+						},
 					},
 				},
 			},
@@ -156,6 +160,9 @@ return {
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format Lua code
 			"black", -- Used to format Python code
+			"beautysh", -- Used to format shell code
+			"prettierd", -- Used to format Javascript code
+			"eslint_d", -- Used to lint Javascript code
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

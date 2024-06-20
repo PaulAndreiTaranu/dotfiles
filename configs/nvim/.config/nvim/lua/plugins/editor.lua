@@ -52,6 +52,8 @@ return {
 				"vimdoc",
 				"xml",
 				"yaml",
+				"dockerfile",
+				"go",
 			},
 
 			-- Autoinstall languages that are not installed

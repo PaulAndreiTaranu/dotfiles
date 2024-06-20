@@ -28,7 +28,7 @@ function setup_docker() {
     echo \
         "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
         $(. /etc/os-release && echo "$VERSION_CODENAME") stable" |
-        sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
+    sudo tee /etc/apt/sources.list.d/docker.list >/dev/null
     sudo apt-get update
 
     print_green "### INSTALLING DOCKER"
@@ -45,11 +45,26 @@ function setup_docker() {
 
 }
 
+function setup_kubectl() {
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+    echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+    sudo install -o root -g root -m 0755 kubectl /usr/local/bn/kubectl
+    rm -rf kubectl kubectl.sha256
+}
+
+function setup_minikube(){
+    curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    sudo install minikube-linux-amd64 /usr/local/bin/minikube && rm minikube-linux-amd64
+}
+
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
     print_green "### UPDATING SYSTEM"
     sudo apt update
 
     setup_docker
+    setup_kubectl
+    setup_minikube
 
     print_green "### CLEANARDO BB"
     sudo apt autoremove -y

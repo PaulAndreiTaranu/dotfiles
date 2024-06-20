@@ -26,6 +26,8 @@ require("config.autocmds")
 require("lazy").setup({
 	defaults = { lazy = false },
 
+	change_detection = { notify = false },
+
 	spec = { import = "plugins" },
 
 	performance = {
