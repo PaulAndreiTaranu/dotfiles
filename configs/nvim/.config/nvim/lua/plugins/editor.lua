@@ -21,6 +21,64 @@ return {
 			require("mini.surround").setup()
 		end,
 	},
+	{ -- File browser
+		"echasnovski/mini.files",
+		version = false,
+		lazy = false,
+		init = function()
+			-- Add rounded corners.
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "MiniFilesWindowOpen",
+				callback = function(args)
+					local win_id = args.data.win_id
+					vim.api.nvim_win_set_config(win_id, { border = "rounded" })
+				end,
+			})
+			-- Use `vim.schedule_wrap()` to allow temporary "fast" window chang
+			local minifiles_track_lost_focus = vim.schedule_wrap(function()
+				local ft = vim.bo.filetype
+				if ft == "minifiles" or ft == "minifiles-help" then
+					return
+				end
+				local cur_win_id = vim.api.nvim_get_current_win()
+				require("mini.files").close()
+				pcall(vim.api.nvim_set_current_win, cur_win_id)
+			end)
+
+			vim.api.nvim_create_autocmd(
+				"BufEnter",
+				{ callback = minifiles_track_lost_focus, desc = "Close 'mini.files' on lost focus" }
+			)
+		end,
+		opts = {
+			options = {
+				use_as_default_explorer = false,
+			},
+			mappings = {
+				go_in_plus = "",
+				go_out_plus = "",
+				synchronize = "<C-s",
+			},
+		},
+
+		config = function(_, opts)
+			local MiniFiles = require("mini.files")
+			MiniFiles.setup(opts)
+
+			local open_current_file_dir = function()
+				MiniFiles.open(vim.api.nvim_buf_get_name(0), true)
+			end
+
+			local minifiles_toggle = function()
+				if not MiniFiles.close() then
+					MiniFiles.open()
+				end
+			end
+
+			vim.keymap.set("n", "<leader>E", open_current_file_dir)
+			vim.keymap.set("n", "<leader>e", minifiles_toggle)
+		end,
+	},
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",

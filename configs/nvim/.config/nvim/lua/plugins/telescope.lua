@@ -6,7 +6,7 @@ return {
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
-		"nvim-telescope/telescope-file-browser.nvim",
+		-- "nvim-telescope/telescope-file-browser.nvim",
 		-- Fuzzy Finder Algorithm which requires local dependencies to be built.
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -97,11 +97,11 @@ return {
 				},
 			},
 			extensions = {
-				file_browser = {
-					hidden = true,
-					-- disables netrw and use telescope-file-browser in its place
-					hijack_netrw = true,
-				},
+				-- file_browser = {
+				-- 	hidden = true,
+				-- 	-- disables netrw and use telescope-file-browser in its place
+				-- 	hijack_netrw = true,
+				-- },
 				fzf = {
 					fuzzy = true,
 					override_generic_sorter = true,
@@ -113,7 +113,7 @@ return {
 
 		-- Enable telescope fzf native, if installed
 		pcall(telescope.load_extension, "fzf")
-		pcall(telescope.load_extension, "file_browser")
+		-- pcall(telescope.load_extension, "file_browser")
 
 		-- Telescope live_grep in git root
 		-- Function to find the git root directory based on the current buffer's path
@@ -168,12 +168,12 @@ return {
 		vim.keymap.set("n", "<leader>sG", ":LiveGrepGitRoot<cr>")
 		vim.keymap.set("n", "<leader>sd", telebuiltin.diagnostics)
 		vim.keymap.set("n", "<leader>sr", telebuiltin.resume)
-		vim.keymap.set("n", "<leader>e", telescope.extensions.file_browser.file_browser)
+		-- vim.keymap.set("n", "<leader>e", telescope.extensions.file_browser.file_browser)
 
 		vim.keymap.set("n", "<leader>/", function()
 			-- You can pass additional configuration to telescope to change theme, layout, etc.
 			telebuiltin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-				winblend = 10,
+				winblend = 0,
 				previewer = false,
 			}))
 		end, { desc = "[/] Fuzzily search in current buffer" })

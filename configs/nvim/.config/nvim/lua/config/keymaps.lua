@@ -21,7 +21,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 
 -- Buffers
 vim.keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save buffer" })
-vim.keymap.set({ "x", "n", "s" }, "<leader>w", "<cmd>bdelete!<cr>", { desc = "Delete buffer" })
+vim.keymap.set({ "x", "n", "s", "v" }, "<leader>w", "<cmd>bdelete!<cr>", { desc = "Delete buffer" })
 vim.keymap.set("n", "<C-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<C-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<C-b>", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
