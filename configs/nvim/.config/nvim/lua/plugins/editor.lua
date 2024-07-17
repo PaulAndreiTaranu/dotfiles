@@ -52,12 +52,14 @@ return {
 		end,
 		opts = {
 			options = {
-				use_as_default_explorer = false,
+				use_as_default_explorer = true,
 			},
 			mappings = {
-				go_in_plus = "",
-				go_out_plus = "",
-				synchronize = "<C-s",
+				go_in = "l",
+				go_in_plus = "<C-l>",
+				go_out = "h",
+				go_out_plus = "<C-h>",
+				synchronize = "<C-s>",
 			},
 		},
 
@@ -69,16 +71,57 @@ return {
 				MiniFiles.open(vim.api.nvim_buf_get_name(0), true)
 			end
 
-			local minifiles_toggle = function()
-				if not MiniFiles.close() then
-					MiniFiles.open()
-				end
+			local open_cwd = function()
+				MiniFiles.open(vim.uv.cwd(), true)
 			end
 
 			vim.keymap.set("n", "<leader>E", open_current_file_dir)
-			vim.keymap.set("n", "<leader>e", minifiles_toggle)
+			vim.keymap.set("n", "<leader>e", open_cwd)
 		end,
 	},
+	-- { -- File Browser
+	-- 	"stevearc/oil.nvim",
+	-- 	opts = {},
+	-- 	dependencies = { "nvim-tree/nvim-web-devicons" },
+	-- 	config = function()
+	-- 		require("oil").setup({
+	-- 			default_file_explorer = true,
+	-- 			skip_confirm_for_simple_edits = true,
+	-- 			view_options = {
+	-- 				show_hidden = true,
+	-- 				natural_order = true,
+	-- 				is_always_hidden = function(name, _)
+	-- 					return name == ".." or name == ".git"
+	-- 				end,
+	-- 			},
+	-- 			float = {
+	-- 				padding = 2,
+	-- 				max_width = 90,
+	-- 				max_height = 0,
+	-- 			},
+	-- 			win_options = {
+	-- 				wrap = true,
+	-- 				winblend = 0,
+	-- 			},
+	-- 			keymaps = {
+	-- 				["<C-c>"] = false,
+	-- 				["<C-s>"] = false,
+	-- 				["<C-h>"] = false,
+	-- 				["<C-l>"] = false,
+	-- 				["<C-k>"] = false,
+	-- 				["<C-j>"] = false,
+	-- 				["h"] = "actions.parent",
+	-- 				["l"] = "actions.select",
+	-- 				["<leader>E"] = "actions.open_cwd",
+	-- 				["q"] = "actions.close",
+	-- 			},
+	-- 		})
+	-- 		-- vim.keymap.set("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+	-- 		vim.keymap.set("n", "<leader>e", function()
+	-- 			vim.cmd((vim.bo.filetype == "oil") and "bd" or "Oil --float")
+	-- 		end)
+	-- 	end,
+	-- },
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",

@@ -10,10 +10,9 @@ vim.opt.mouse = "a"
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
+-- only set clipboard if not in ssh, to make sure the OSC 52
+-- integration works automatically. Requires Neovim >= 0.10.0
+vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -23,9 +22,10 @@ vim.opt.undofile = true
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.smartindent = true -- Insert indents automatically
 
 -- Always show the signcolumn, otherwise it would shift the text each time
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "no"
 
 -- Decrease update time
 vim.opt.updatetime = 350
@@ -51,6 +51,7 @@ vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 5
+vim.opt.smoothscroll = true
 
 -- Disable swap files.
 vim.opt.swapfile = false
@@ -63,3 +64,7 @@ vim.opt.tabstop = 4
 vim.opt.smartindent = true
 -- Size of an indent
 vim.opt.shiftwidth = 4
+vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+
+-- Fix markdown indentation settings
+vim.g.markdown_recommended_style = 0
