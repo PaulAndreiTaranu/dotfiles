@@ -60,8 +60,12 @@ vim.opt.swapfile = false
 vim.opt.expandtab = true
 -- Number of spaces tabs count for
 vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 -- Insert indents automatically
 vim.opt.smartindent = true
+vim.opt.autoindent = true
+-- Copy the previous indentation on autoindenting
+vim.opt.copyindent = true
 -- Size of an indent
 vim.opt.shiftwidth = 4
 vim.opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode

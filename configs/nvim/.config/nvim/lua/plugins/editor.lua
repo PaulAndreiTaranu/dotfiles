@@ -4,6 +4,7 @@ return {
 
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
+		event = "VeryLazy",
 		config = function()
 			-- Better Around/Inside textobjects
 			--
@@ -60,6 +61,7 @@ return {
 				go_out = "h",
 				go_out_plus = "<C-h>",
 				synchronize = "<C-s>",
+				reset = "r",
 			},
 		},
 
@@ -125,9 +127,8 @@ return {
 
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
-
 		build = ":TSUpdate",
-
+		event = { "VeryLazy" },
 		opts = {
 			ensure_installed = {
 				"bash",
@@ -168,7 +169,6 @@ return {
 			},
 			indent = { enable = true, disable = { "ruby" } },
 		},
-
 		config = function(_, opts)
 			-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
 
