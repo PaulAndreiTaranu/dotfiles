@@ -86,7 +86,7 @@
         },
         {
             "before": ["<leader>", "w"],
-            "commands": [":q"]
+            "commands": [":q!"]
         },
         {
             "before": ["<leader>", "h"],
@@ -95,6 +95,18 @@
         {
             "before": ["<leader>", "l"],
             "commands": [":bnext"]
+        },
+        {
+            "before": ["<leader>", "z"],
+            "commands": ["workbench.action.toggleZenMode"]
+        },
+        {
+            "before": ["<leader>", "p"],
+            "commands": ["workbench.action.quickOpen"]
+        },
+        {
+            "before": ["<leader>", "r"],
+            "commands": ["editor.action.rename"]
         }
     ],
     // To improve performance
@@ -123,6 +135,8 @@
     "explorer.confirmDelete": false,
     "explorer.confirmPasteNative": false,
     "explorer.confirmDragAndDrop": false,
+    "explorer.decorations.badges": true,
+    "explorer.decorations.colors": false,
     "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
     "emmet.showSuggestionsAsSnippets": true,
     "emmet.triggerExpansionOnTab": true,
@@ -133,6 +147,8 @@
     // TS/JS
     "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "javascript.updateImportsOnFileMove.enabled": "always",
     "debug.javascript.autoAttachFilter": "disabled",
     "typescript.updateImportsOnFileMove.enabled": "always",
@@ -144,8 +160,8 @@
 
     // JSON
     "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "json.format.enable": true,
-    "json.sortOnSave.enable": false,
 
     // PYTHON
     "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
@@ -241,7 +257,7 @@
     "workbench.activityBar.location": "top",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.colorTheme": "Moxer",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"
         // "editoreNumber.activeForeground": "#ffffff"
@@ -256,5 +272,5 @@
     "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
     "godot_tools.gdscript_lsp_server_port": 6005,
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
+    "markdown-preview-enhanced.codeBlockTheme": "darcula.css"
 }

@@ -125,8 +125,6 @@ return {
 			-- But for many setups, the LSP (`tsserver`) will work just fine
 			tsserver = {},
 
-			emmet_language_server = {},
-
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes = { ...},
