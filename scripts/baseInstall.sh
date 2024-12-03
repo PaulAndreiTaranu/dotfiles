@@ -59,7 +59,6 @@ as_normal_user "mkdir -p $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin 
 as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" git kitty zellij"
 
 # Setting up imported configs
-setup_fish
 setup_font
 setup_code
 
@@ -72,6 +71,7 @@ if [ -e "/usr/bin/fdfind" ]; then
 fi
 
 sudo apt autoremove -y && sudo apt clean -y
+print_green '# Reminder: Setup Fish'
 print_green '# Reminder: Change to Wayland'
 print_green '# Reminder: Install password manager'
 print_green '# Reminder: SETUP ubuntu keybindings'

@@ -1,18 +1,20 @@
 {
     // FONTS
-    "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
+    "editor.fontFamily": "JetBrainsMono Nerd Font",
     "editor.fontSize": 13,
     "editor.fontLigatures": true,
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
-    "terminal.integrated.fontSize": 13,
+    "terminal.integrated.fontSize": 12,
+    "notebook.output.fontFamily": "JetBrainsMono Nerd Font",
+    "notebook.output.fontSize": 15,
     "editor.fontWeight": "500",
     "errorLens.fontWeight": "bold",
 
     // EDITOR
     "editor.accessibilitySupport": "off",
     "editor.codeLens": false,
-    "editor.cursorBlinking": "smooth",
-    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "blink",
+    "editor.cursorSmoothCaretAnimation": "off",
     "editor.smoothScrolling": true,
     "editor.detectIndentation": false,
     "editor.insertSpaces": true,
@@ -257,7 +259,7 @@
     "workbench.activityBar.location": "top",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "Moxer",
+    "workbench.colorTheme": "Moxer Borderline",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"
         // "editoreNumber.activeForeground": "#ffffff"
