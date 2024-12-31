@@ -5,7 +5,7 @@
     "editor.fontLigatures": true,
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
     "terminal.integrated.fontSize": 12,
-    "notebook.output.fontFamily": "JetBrainsMono Nerd Font",
+    "notebook.output.fontFamily": "arial, JetBrainsMono Nerd Font",
     "notebook.output.fontSize": 15,
     "editor.fontWeight": "500",
     "errorLens.fontWeight": "bold",
@@ -126,6 +126,7 @@
     "security.workspace.trust.enabled": false,
 
     // MISC
+    "breadcrumbs.enabled": false,
     "keyboard.dispatch": "keyCode", // Solve linux caps to esc bug
     "telemetry.telemetryLevel": "off",
     "git.decorations.enabled": false,
@@ -274,5 +275,7 @@
     "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
     "godot_tools.gdscript_lsp_server_port": 6005,
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "markdown-preview-enhanced.codeBlockTheme": "darcula.css"
+    "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
+    "godotTools.editorPath.godot4": "/home/paul/projects/godot/Godot",
+    "godotTools.lsp.serverPort": 6005
 }
