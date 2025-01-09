@@ -119,7 +119,7 @@ keybinds clear-defaults=true {
     }
     shared_except "locked" {
         bind "Alt f" { ToggleFloatingPanes; }
-        bind "Ctrl g" { SwitchToMode "locked"; }
+        // bind "Ctrl g" { SwitchToMode "locked"; }
 
         bind "Alt n" { NewTab; SwitchToMode "Normal"; }
         bind "Alt r" { SwitchToMode "RenameTab"; TabNameInput 0; }
@@ -140,27 +140,27 @@ keybinds clear-defaults=true {
             SwitchToMode "Normal"
         }
     }
-    shared_except "locked" "move" {
-        bind "Ctrl h" { SwitchToMode "move"; }
-    }
-    shared_except "locked" "session" {
-        bind "Ctrl o" { SwitchToMode "session"; }
-    }
-    shared_except "locked" "scroll" "search" "tmux" {
-        bind "Ctrl b" { SwitchToMode "tmux"; }
-    }
-    shared_except "locked" "scroll" "search" {
-        bind "Ctrl s" { SwitchToMode "scroll"; }
-    }
-    shared_except "locked" "tab" {
-        bind "Ctrl t" { SwitchToMode "tab"; }
-    }
-    shared_except "locked" "pane" {
-        bind "Ctrl p" { SwitchToMode "pane"; }
-    }
-    shared_except "locked" "resize" {
-        bind "Ctrl n" { SwitchToMode "resize"; }
-    }
+    // shared_except "locked" "move" {
+    //     bind "Ctrl h" { SwitchToMode "move"; }
+    // }
+    // shared_except "locked" "session" {
+    //     bind "Ctrl o" { SwitchToMode "session"; }
+    // }
+    // shared_except "locked" "scroll" "search" "tmux" {
+    //     bind "Ctrl b" { SwitchToMode "tmux"; }
+    // }
+    // shared_except "locked" "scroll" "search" {
+    //     bind "Ctrl s" { SwitchToMode "scroll"; }
+    // }
+    // shared_except "locked" "tab" {
+    //     bind "Ctrl t" { SwitchToMode "tab"; }
+    // }
+    // shared_except "locked" "pane" {
+    //     bind "Ctrl p" { SwitchToMode "pane"; }
+    // }
+    // shared_except "locked" "resize" {
+    //     bind "Ctrl n" { SwitchToMode "resize"; }
+    // }
     shared_except "normal" "locked" "entersearch" {
         bind "enter" { SwitchToMode "normal"; }
     }
@@ -170,35 +170,35 @@ keybinds clear-defaults=true {
     shared_among "pane" "tmux" {
         bind "x" { CloseFocus; SwitchToMode "normal"; }
     }
-    shared_among "scroll" "search" {
-        bind "PageDown" { PageScrollDown; }
-        bind "PageUp" { PageScrollUp; }
-        bind "left" { PageScrollUp; }
-        bind "down" { ScrollDown; }
-        bind "up" { ScrollUp; }
-        bind "right" { PageScrollDown; }
-        bind "Ctrl b" { PageScrollUp; }
-        bind "Ctrl c" { ScrollToBottom; SwitchToMode "normal"; }
-        bind "d" { HalfPageScrollDown; }
-        bind "Ctrl f" { PageScrollDown; }
-        bind "h" { PageScrollUp; }
-        bind "j" { ScrollDown; }
-        bind "k" { ScrollUp; }
-        bind "l" { PageScrollDown; }
-        bind "Ctrl s" { SwitchToMode "normal"; }
-        bind "u" { HalfPageScrollUp; }
-    }
-    entersearch {
-        bind "Ctrl c" { SwitchToMode "scroll"; }
-        bind "esc" { SwitchToMode "scroll"; }
-        bind "enter" { SwitchToMode "search"; }
-    }
+    // shared_among "scroll" "search" {
+    //     bind "PageDown" { PageScrollDown; }
+    //     bind "PageUp" { PageScrollUp; }
+    //     bind "left" { PageScrollUp; }
+    //     bind "down" { ScrollDown; }
+    //     bind "up" { ScrollUp; }
+    //     bind "right" { PageScrollDown; }
+    //     bind "Ctrl b" { PageScrollUp; }
+    //     bind "Ctrl c" { ScrollToBottom; SwitchToMode "normal"; }
+    //     bind "d" { HalfPageScrollDown; }
+    //     bind "Ctrl f" { PageScrollDown; }
+    //     bind "h" { PageScrollUp; }
+    //     bind "j" { ScrollDown; }
+    //     bind "k" { ScrollUp; }
+    //     bind "l" { PageScrollDown; }
+    //     bind "Ctrl s" { SwitchToMode "normal"; }
+    //     bind "u" { HalfPageScrollUp; }
+    // }
+    // entersearch {
+    //     bind "Ctrl c" { SwitchToMode "scroll"; }
+    //     bind "esc" { SwitchToMode "scroll"; }
+    //     bind "enter" { SwitchToMode "search"; }
+    // }
     renametab {
         bind "esc" { UndoRenameTab; SwitchToMode "tab"; }
     }
-    shared_among "renametab" "renamepane" {
-        bind "Ctrl c" { SwitchToMode "normal"; }
-    }
+    // shared_among "renametab" "renamepane" {
+    //     bind "Ctrl c" { SwitchToMode "normal"; }
+    // }
     renamepane {
         bind "esc" { UndoRenamePane; SwitchToMode "pane"; }
     }

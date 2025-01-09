@@ -16,8 +16,6 @@
     "editor.cursorBlinking": "blink",
     "editor.cursorSmoothCaretAnimation": "off",
     "editor.smoothScrolling": true,
-    "editor.detectIndentation": false,
-    "editor.insertSpaces": true,
     "editor.bracketPairColorization.enabled": true,
     "editor.guides.bracketPairs": true,
     "editor.formatOnSave": true,
@@ -43,12 +41,14 @@
     "editor.snippetSuggestions": "top",
     "editor.linkedEditing": true,
 
-    // EDITOR && PRETTIER
+    // EDITOR && PRETTIER TABS AND SPACES
     "editor.wordWrap": "off",
     "editor.wordWrapColumn": 100,
     "prettier.printWidth": 100,
     "editor.tabSize": 4,
     "prettier.tabWidth": 4,
+    "editor.detectIndentation": true,
+    "editor.insertSpaces": true,
 
     // PRETTIER
     "prettier.arrowParens": "always",
@@ -260,7 +260,7 @@
     "workbench.activityBar.location": "top",
     "workbench.productIconTheme": "fluent-icons",
     "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "Moxer Borderline",
+    "workbench.colorTheme": "GitHub Dark Default",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"
         // "editoreNumber.activeForeground": "#ffffff"
@@ -272,8 +272,6 @@
     },
 
     // GAME ENGINES WINDOWS
-    "godot_tools.editor_path": "C:\\Users\\paula\\Documents\\Godot\\Godot_v4.0_mono.exe",
-    "godot_tools.gdscript_lsp_server_port": 6005,
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
     "godotTools.editorPath.godot4": "/home/paul/projects/godot/Godot",
