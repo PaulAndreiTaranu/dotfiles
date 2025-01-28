@@ -258,9 +258,6 @@
     },
     "workbench.sideBar.location": "right",
     "workbench.activityBar.location": "top",
-    "workbench.productIconTheme": "fluent-icons",
-    "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "GitHub Dark Default",
     "workbench.colorCustomizations": {
         // "editor.background": "#000000"
         // "editoreNumber.activeForeground": "#ffffff"
@@ -275,5 +272,7 @@
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
     "godotTools.editorPath.godot4": "/home/paul/projects/godot/Godot",
-    "godotTools.lsp.serverPort": 6005
+    "godotTools.lsp.serverPort": 6005,
+    "workbench.iconTheme": "vscode-great-icons",
+    "workbench.colorTheme": "Dark SynthWave '84"
 }
