@@ -13,16 +13,11 @@ function setup_neovim() {
     #     exit 1
     # fi
 
-    if [ -e "/usr/bin/vim" ]; then
+    if [[ -e "/usr/bin/vim" || -e "/usr/bin/vi" ]]; then
         print_green '### REMOVING VIM'
-        if is_ubuntu; then
-            sudo apt purge -y --auto-remove vim
-            sudo rm -rf "/usr/bin/vim"
-            sudo rm -rf "/usr/bin/vi"
-        else
-            print_red '### DISTRO NOT SUPPORTED'
-            exit 1
-        fi
+        sudo apt purge -y --auto-remove vim
+        sudo rm -rf "/usr/bin/vim"
+        sudo rm -rf "/usr/bin/vi"
     fi
 
     if [ ! -e "/snap/bin/nvim" ]; then
@@ -32,7 +27,6 @@ function setup_neovim() {
         print_red '### NEOVIM ALREADY INSTALLED'
     fi
 
-    sudo rm -rf "/usr/bin/vi"
     if_snap 'sudo snap alias nvim vi'
 
     nvim_config_array=(

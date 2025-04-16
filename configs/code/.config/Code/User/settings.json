@@ -7,7 +7,7 @@
     "terminal.integrated.fontSize": 12,
     "notebook.output.fontFamily": "arial, JetBrainsMono Nerd Font",
     "notebook.output.fontSize": 15,
-    "editor.fontWeight": "500",
+    "editor.fontWeight": "600",
     "errorLens.fontWeight": "bold",
 
     // EDITOR
@@ -192,6 +192,16 @@
         "formatting.gofumpt": true
     },
 
+    "[lua]": {
+        "editor.quickSuggestions": {
+            "comments": "inline",
+            "other": "on",
+            "strings": "on"
+        },
+        "editor.semanticHighlighting.enabled": true
+    },
+    "Lua.diagnostics.globals": ["vim"],
+
     // Rust
     "[rust]": { "editor.defaultFormatter": "rust-lang.rust" },
 
@@ -250,6 +260,8 @@
     "window.menuBarVisibility": "classic",
 
     // WORKBENCH
+    "workbench.iconTheme": "vscode-great-icons",
+    "workbench.colorTheme": "Kanagawa Black",
     "workbench.list.horizontalScrolling": true,
     "workbench.startupEditor": "none",
     "workbench.list.smoothScrolling": true,
@@ -272,7 +284,5 @@
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
     "godotTools.editorPath.godot4": "/home/paul/projects/godot/Godot",
-    "godotTools.lsp.serverPort": 6005,
-    "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "Dark SynthWave '84"
+    "godotTools.lsp.serverPort": 6005
 }
