@@ -45,8 +45,9 @@ if status is-interactive
 
     # Python alias
     alias poe="poetry"
-    alias poed="poetry add -G dev"
     alias py="python3"
+    alias u="uv"
+    alias ut="uv tree --depth=1"
 
     # General alias
     alias t="btop"
@@ -78,6 +79,17 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.dotnet
 
 starship init fish | source
+
+# UV Python Package Manager
+set -Ux UV_PYTHON $HOME/.local/bin/python3.14
+function uvsh
+    if test -f .venv/bin/activate.fish
+        source .venv/bin/activate.fish
+    else
+        uv venv
+        source .venv/bin/activate.fish
+    end
+end
 
 # NODE & PNPM
 set -x N_PREFIX "$HOME/.local/bin/n"; contains "$N_PREFIX/bin" $PATH; or set -a PATH "$N_PREFIX/bin"

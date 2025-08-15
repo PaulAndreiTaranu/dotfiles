@@ -261,7 +261,7 @@
 
     // WORKBENCH
     "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "Kanagawa Black",
+    "workbench.colorTheme": "GitHub Dark Default",
     "workbench.list.horizontalScrolling": true,
     "workbench.startupEditor": "none",
     "workbench.list.smoothScrolling": true,
