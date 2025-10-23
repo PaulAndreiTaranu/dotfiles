@@ -42,7 +42,7 @@
     "editor.linkedEditing": true,
 
     // EDITOR && PRETTIER TABS AND SPACES
-    "editor.wordWrap": "off",
+    "editor.wordWrap": "on",
     "editor.wordWrapColumn": 100,
     "prettier.printWidth": 100,
     "editor.tabSize": 4,
@@ -56,7 +56,7 @@
     "prettier.endOfLine": "lf",
     "prettier.bracketSameLine": true,
     "prettier.jsxSingleQuote": true,
-    "prettier.proseWrap": "preserve",
+    "prettier.proseWrap": "always",
     "prettier.quoteProps": "as-needed",
     "prettier.semi": false,
     "prettier.singleQuote": true,
@@ -146,6 +146,9 @@
 
     // PROGRAMMING LANGUAGES
     "editor.defaultFormatter": null,
+    "files.associations": {
+        "*.css": "tailwindcss"
+    },
 
     // TS/JS
     "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -271,10 +274,11 @@
     "workbench.sideBar.location": "right",
     "workbench.activityBar.location": "top",
     "workbench.colorCustomizations": {
-        // "editor.background": "#000000"
-        // "editoreNumber.activeForeground": "#ffffff"
-        // "editorLineNumber.foreground": "#808080",
+        "focusBorder": "#00000000",
+        "editor.focusedBorder": "#00000000",
+        "contrastBorder": "#00000000"
     },
+
     "remote.SSH.remotePlatform": {
         "fedoraServer": "linux",
         "ubuntuServer": "linux"
@@ -284,5 +288,6 @@
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
     "godotTools.editorPath.godot4": "/home/paul/projects/godot/Godot",
-    "godotTools.lsp.serverPort": 6005
+    "godotTools.lsp.serverPort": 6005,
+    "diffEditor.renderSideBySide": false
 }
