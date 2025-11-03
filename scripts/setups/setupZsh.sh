@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-SCRIPTS="$HOME/dotfiles/scripts"
-. $SCRIPTS/utils/utils.sh
-check_sudo
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh" || { echo "XXX FAILED TO LOAD UTILS.SH"; exit 1; }
 
 OHMYZSH_LINK="curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
 
 function setup_zsh() {
+    ensure_root
     print_green '### SETTING UP ZSH'
 
     # Check if zsh is installed
@@ -25,7 +26,7 @@ function setup_zsh() {
     # Check if oh-my-zsh is installed
     if [[ ! -d "$HOME/.oh-my-zsh" && -e "/bin/zsh" ]]; then
         print_green '### INSTALLING OH-MY-ZSH'
-        as_normal_user "$($OHMYZSH_LINK) '' --unattended"
+        run_as_user "$($OHMYZSH_LINK) '' --unattended"
     else
         print_red '### OH-MY-ZSH ALREADY INSTALLED'
     fi
@@ -36,7 +37,7 @@ function setup_zsh() {
     p10k_DIR="$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
     if [[ ! -d "$p10k_DIR" && -d "$HOME/.oh-my-zsh" ]]; then
         print_green '### INSTALLING POWERLEVEL10K THEME'
-        as_normal_user "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${p10k_DIR}"
+        run_as_user "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${p10k_DIR}"
     else
         print_red '### POWERLEVEL10K ALREADY INSTALLED'
     fi
@@ -45,7 +46,7 @@ function setup_zsh() {
     ZSH_VI_MODE_DIR="$HOME/.oh-my-zsh/custom/plugins/zsh-vi-mode"
     if [[ ! -d "$ZSH_VI_MODE_DIR" ]]; then
         print_green '### INSTALLING ZSH-VI-MODE PLUGIN'
-        as_normal_user "git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_VI_MODE_DIR"
+        run_as_user "git clone https://github.com/jeffreytse/zsh-vi-mode $ZSH_VI_MODE_DIR"
     else
         print_red '### ZSH-VI-MODE ALREADY INSTALLED'
     fi
@@ -56,9 +57,10 @@ function setup_zsh() {
 
 	files_to_remove=($HOME/.zshrc $HOME/.zshrc.backup)
 	remove_with_array "${files_to_remove[@]}"
-	as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" zsh"
+	run_as_user "cd $HOME/dotfiles/configs && stow --target="$HOME" zsh"
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
     setup_zsh
 fi
+

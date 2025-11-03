@@ -1,25 +1,40 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-SCRIPTS="$HOME/dotfiles/scripts"
-. $SCRIPTS/utils/utils.sh
+BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$BASE_DIR/../utils/utils.sh" || {
+	echo "XXX FAILED TO LOAD UTILS.SH"
+	exit 1
+}
 
-print_green "### Creating new SSH Key for $1"
-if [ -n "$1" ]; then
-    ssh-keygen -t ed25519 -f $HOME/.ssh/$1 -P "" -q
-else
-    ssh-keygen -t ed25519 -f $HOME/.ssh/$(uname -n) -P "" -q
+function createSSH() {
+	local key_name="${1:-$(uname -n)}"
+	local key_path="$HOME/.ssh/$key_name"
+
+	ssh-keygen -t ed25519 -f "$key_path" -P "" -q
+
+	# Adding the key to ssh-agent
+	eval "$(ssh-agent -s)" >/dev/null
+	ssh-add "$key_path"
+
+	print_green "### NEW SSH KEY FOR $key_name → $key_path CREATED:"
+	cat "$key_path.pub"
+
+	### Create .ssh/config file and set each server:
+
+	# Host ubuntuServer
+	#     HostName 127.0.0.1
+	#     Port 4099
+	#     User paul
+	#     IdentityFile .ssh/privateKey
+
+	# Host github.com
+	#     ForwardAgent yes
+
+	### Or create authorized_keys file and put public keys:
+	# ssh-rsa exampleAAAAB3NzaC1yc2E...
+}
+
+if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
+	createSSH "${1:-}"
 fi
-
-### Create .ssh/config file and set each server:
-
-# Host ubuntuServer
-#     HostName 127.0.0.1
-#     Port 4099
-#     User paul
-#     IdentityFile .ssh/privateKey
-
-# Host github.com
-#     ForwardAgent yes
-
-### Or create authorized_keys file and put public keys:
-# ssh-rsa exampleAAAAB3NzaC1yc2E...

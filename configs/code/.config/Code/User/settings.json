@@ -146,10 +146,6 @@
 
     // PROGRAMMING LANGUAGES
     "editor.defaultFormatter": null,
-    "files.associations": {
-        "*.css": "tailwindcss"
-    },
-
     // TS/JS
     "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -213,28 +209,24 @@
         "editor.defaultFormatter": "ms-vscode.cpptools",
         "editor.wordWrap": "off"
     },
-    "C_Cpp.vcFormat.indent.caseLabels": true,
-    "C_Cpp.vcFormat.indent.caseContentsWhenBlock": true,
-    "C_Cpp.vcFormat.indent.accessSpecifiers": true,
-    "C_Cpp.vcFormat.indent.braces": true,
-    "C_Cpp.clang_format_fallbackStyle": "{BasedOnStyle: LLVM, IndentWidth: 4}",
-    "C_Cpp.clang_format_style": "{BasedOnStyle: LLVM, IndentWidth: 4}",
-    "C_Cpp.errorSquiggles": "enabled",
-    "C_Cpp.default.browse.limitSymbolsToIncludedHeaders": true,
-    "C_Cpp.intelliSenseEngine": "Tag Parser",
-    "C_Cpp.intelliSenseCacheSize": 0,
-    "C_Cpp.intelliSenseUpdateDelay": 500,
 
     // C#
     "[csharp]": { "editor.defaultFormatter": "ms-dotnettools.csharp" },
     "omnisharp.enableEditorConfigSupport": false,
 
-    // BASH
-    "[shellscript]": { "editor.defaultFormatter": "foxundermoon.shell-format" },
+    // ShellScript
+    "[shellscript]": { "editor.defaultFormatter": "mkhl.shfmt" },
 
     // Terraform
     "[terraform]": { "editor.defaultFormatter": "hashicorp.terraform" },
 
+    // FILES
+    "files.associations": {
+        "*.css": "tailwindcss",
+        "*.sh": "shellscript",
+        "*.bash": "shellscript",
+        "*.zsh": "shellscript"
+    },
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -264,13 +256,15 @@
 
     // WORKBENCH
     "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.colorTheme": "Aura Dark",
     "workbench.list.horizontalScrolling": true,
     "workbench.startupEditor": "none",
     "workbench.list.smoothScrolling": true,
     "workbench.editorAssociations": {
         "*.ipynb": "jupyter-notebook"
     },
+    "workbench.productIconTheme": "fluent-icons",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
     "workbench.sideBar.location": "right",
     "workbench.activityBar.location": "top",
     "workbench.colorCustomizations": {

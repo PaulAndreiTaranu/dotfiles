@@ -1,46 +1,50 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-SCRIPTS="$HOME/dotfiles/scripts"
-. $SCRIPTS/utils/utils.sh
-check_sudo
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh" || {
+	echo "XXX FAILED TO LOAD UTILS.SH"
+	exit 1
+}
 
 function setup_fish() {
-    print_green '### SETTING UP FISH'
+	ensure_root
+	print_green '### SETTING UP FISH'
 
-    # Removing old config
-    as_normal_user "rm -rf $HOME/.config/fish $HOME/.config/starship.toml"
-    as_normal_user "mkdir -p $HOME/.config/fish"
+	require_commands curl stow fish
 
-    # Check if fish is installed
-    if [ ! -e "/usr/bin/fish" ]; then
-        if is_ubuntu; then
-            print_green '### INSTALLING ZSH'
-            sudo apt -y install fish
-        else
-            print_red '### DISTRO NOT SUPPORTED'
-            exit 1
-        fi
-    else
-        print_red '### FISH ALREADY INSTALLED'
-    fi
+	# Removing old config
+	run_as_user "rm -rf $HOME/.config/fish $HOME/.config/starship.toml"
+	run_as_user "mkdir -p $HOME/.config/fish"
 
-    print_green '### INSTALLING STARSHIP PROMPT'
-    as_normal_user "curl -sS https://starship.rs/install.sh | sh"
+	print_green '### INSTALLING STARSHIP PROMPT'
+	if ! command -v starship &>/dev/null; then
+		curl -sS https://starship.rs/install.sh | sh -s -- --yes
+	else
+		print_yellow '### STARSHIP ALREADY INSTALLED'
+	fi
 
-    # Change default shell to fish
-    print_red '### CHANGE DEFAULT SHELL TO FISH AND STOW CONFIG'
-    sudo usermod --shell $(which fish) $USER
+	print_green '### CHANGE DEFAULT SHELL TO FISH'
+	local fish_path=$(which fish)
 
-    # Installing plugin manager
-    FISHER_LINK="https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
-    as_fish_user "curl -sL $FISHER_LINK | source && fisher install jorgebucaran/fisher"
+	# Ensure fish is in /etc/shells
+	if ! grep -q "^$fish_path$" /etc/shells; then
+		print_yellow "### ADDING FISH TO /etc/shells"
+		echo "$fish_path" >>/etc/shells
+	fi
+	# Change shell (using preserved $USER)
+	usermod --shell "$fish_path" "$USER"
 
-    # Installing plugins
-    as_fish_user "fisher install IlanCosman/tide@v6"
-    as_fish_user "fisher install jethrokuan/z"
-    as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" fish starship"
+	print_green "### INSTALLING FISHER PLUGIN MANAGER"
+	FISHER_LINK="https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
+	run_as_fish "curl -sL $FISHER_LINK | source && fisher install jorgebucaran/fisher"
+
+	print_green "### INSTALLING FISHER PLUGINS"
+	# run_as_fish "fisher install IlanCosman/tide@v6"
+	run_as_fish "fisher install jethrokuan/z"
+	run_as_user "cd $HOME/dotfiles/configs && stow --target=$HOME fish starship"
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
-    setup_fish
+	setup_fish
 fi

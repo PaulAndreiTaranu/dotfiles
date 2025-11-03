@@ -1,49 +1,39 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-SCRIPTS="$HOME/dotfiles/scripts"
-. $SCRIPTS/utils/utils.sh
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh" || {
+	echo "XXX FAILED TO LOAD UTILS.SH"
+	exit 1
+}
 
 function setup_node() {
-    print_green '### SETTING UP NODE'
+	require_commands curl bash
 
-    # NVM_DIR="$HOME/.nvm"
-    # if [[ -d "$NVM_DIR" ]]; then
-    #     print_red "### REMOVING NVM"
-    #     rm -rf $NVM_DIR
-    # fi
-    # print_green "### INSTALLING NVM"
-    # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+	print_green '### SETTING UP NODE'
 
-    N_PREFIX="$HOME/.local/bin/n"
-    if [[ ! -d "$N_PREFIX" ]]; then
-        print_green "### INSTALLING N"
-        curl -L https://bit.ly/n-install | N_PREFIX="$N_PREFIX" bash -s -- -y -n
-    else
-        print_red "### N ALREADY INSTALLED"
-    fi
+	# Install n (Node version manager)
+	local n_prefix="$HOME/.local/bin/n"
+	if [[ -d "$n_prefix" ]]; then
+		print_yellow "### N ALREADY INSTALLED"
+	else
+		print_green "### INSTALLING N"
+		run_as_user "curl -L https://bit.ly/n-install | N_PREFIX=$n_prefix bash -s -- -y -n"
+	fi
 
-    PNPM_HOME="$HOME/.local/share/pnpm"
-    if [[ ! -d "$PNPM_HOME" ]]; then
-        print_green "### INSTALLING PNPM"
-        curl -fsSL https://get.pnpm.io/install.sh | bash
-    else
-        print_red "### PNPM ALREADY INSTALLED"
-    fi
+	# Install pnpm
+	local pnpm_home="$HOME/.local/share/pnpm"
+	if command -v pnpm &>/dev/null; then
+		print_yellow "### PNPM ALREADY INSTALLED"
+	else
+		print_green "### INSTALLING PNPM"
+		run_as_user "curl -fsSL https://get.pnpm.io/install.sh | sh"
+	fi
 
-    # print_green "### INSTALLING LATEST NODEJS"
-    # WHICH_SHELL=$(echo $SHELL)
-    # if [[ $WHICH_SHELL = '/usr/bin/zsh' ]]; then
-    #     print_green '### SOURCING .zshrc AND INSTALLING NODE'
-    #     zsh -c "source $HOME/.zshrc && nvm install node"
-    # elif [[ $WHICH_SHELL = '/usr/bin/bash' ]]; then
-    #     print_green '### SOURCING .bashrc AND INSTALLING NODE'
-    #     bash -c "source "$HOME/.bashrc" && nvm install node"
-    # else
-    #     print_green '### SHELL NOT SUPPORTED'
-    #     exit 1
-    # fi
+	print_green '### NODE SETUP COMPLETE!'
+	print_yellow '### RESTART YOUR SHELL OR SOURCE YOUR CONFIG TO USE NODE/PNPM'
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
-    setup_node
+	setup_node
 fi
