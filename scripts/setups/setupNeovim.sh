@@ -1,49 +1,59 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-SCRIPTS="$HOME/dotfiles/scripts"
-. $SCRIPTS/utils/utils.sh
-check_sudo
-
-function setup_neovim() {
-    print_green '### SETTING UP NEOVIM'
-
-    # PNPM_HOME="$HOME/.local/share/pnpm"
-    # if [[ ! -d "$PNPM_HOME" ]]; then
-    #     print_red '### PNPM NOT INSTALLED'
-    #     exit 1
-    # fi
-
-    if [[ -e "/usr/bin/vim" || -e "/usr/bin/vi" ]]; then
-        print_green '### REMOVING VIM'
-        sudo apt purge -y --auto-remove vim
-        sudo rm -rf "/usr/bin/vim"
-        sudo rm -rf "/usr/bin/vi"
-    fi
-
-    if [ ! -e "/snap/bin/nvim" ]; then
-        print_green '### INSTALLING NEOVIM FROM SNAP'
-        if_snap 'sudo snap install nvim --classic'
-    else
-        print_red '### NEOVIM ALREADY INSTALLED'
-    fi
-
-    if_snap 'sudo snap alias nvim vi'
-
-    nvim_config_array=(
-        $HOME/.config/nvim
-        $HOME/.local/share/nvim
-        $HOME/.local/state/nvim
-        $HOME/.cache/nvim
-    )
-    remove_with_array "${nvim_config_array[@]}"
-    as_normal_user "mkdir -p $HOME/.config/nvim"
-    as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" nvim"
-
-    print_green '### HEADLESS LAZY INSTALL'
-    as_normal_user 'nvim --headless "+Lazy! sync" +q'
-    # as_normal_user 'nvim --headless "+TSInstallSync" +q'
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh" || {
+	echo "XXX FAILED TO LOAD UTILS.SH"
+	exit 1
 }
 
-if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
-    setup_neovim
+function setup_neovim() {
+	ensure_root
+	print_green '### SETTING UP NEOVIM'
+
+	require_commands snap
+
+	# Install Neovim via snap if not installed
+	if ! command -v nvim &>/dev/null; then
+		print_green '### INSTALLING NEOVIM (SNAP)'
+		snap install nvim --classic
+		# Ensure 'vi' alias points to nvim
+		snap alias nvim vi
+	else
+		print_yellow '!!! NEOVIM ALREADY INSTALLED, SKIPPING INSTALL'
+	fi
+
+	# Make nvim the default editor system-wide (for sudo, crontab, git, etc.)
+	update-alternatives --install /usr/bin/editor editor "$(command -v nvim)" 100
+	update-alternatives --set editor "$(command -v nvim)"
+	# Create lightweight shims for vim and vi that point to nvim (no purging needed)
+	for cmd in vim vi; do
+		if [[ -e "/usr/local/bin/$cmd" || -L "/usr/local/bin/$cmd" ]]; then
+			sudo rm -f "/usr/local/bin/$cmd"
+		fi
+		sudo ln -sf "$(command -v nvim)" "/usr/local/bin/$cmd"
+	done
+
+	# Clean any old config directories
+	local nvim_config_array=(
+		"$HOME/.config/nvim"
+		"$HOME/.local/share/nvim"
+		"$HOME/.local/state/nvim"
+		"$HOME/.cache/nvim"
+	)
+	remove_with_array "${nvim_config_array[@]}"
+
+	# Stow dotfiles
+	run_as_user "mkdir -p $HOME/.config/nvim"
+	run_as_user "cd $HOME/dotfiles/configs && stow --no-folding --target=$HOME nvim"
+
+	# Run headless plugin install
+	print_green "### INSTALLING NEOVIM PLUGINS (Lazy.nvim)"
+	run_as_user "nvim --headless '+Lazy! sync' +q"
+
+	print_green "### NEOVIM SETUP COMPLETE"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+	setup_neovim
 fi

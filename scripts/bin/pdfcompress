@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -ne 1 ]]; then
+	echo "Usage: pdfcompress <file.pdf>" >&2
+	exit 1
+fi
+
+INPUT="$1"
+
+if [[ ! -f "$INPUT" ]]; then
+	echo "Error: file not found: $INPUT" >&2
+	exit 1
+fi
+
+if [[ "${INPUT,,}" != *.pdf ]]; then
+	echo "Error: not a PDF file" >&2
+	exit 1
+fi
+
+DIR="$(cd "$(dirname "$INPUT")" && pwd)"
+BASE="$(basename "$INPUT")"
+TMP="$(mktemp "$DIR/.${BASE}.XXXXXX.pdf")"
+
+gs \
+	-sDEVICE=pdfwrite \
+	-dCompatibilityLevel=1.4 \
+	-dPDFSETTINGS=/prepress \
+	-dNOPAUSE \
+	-dBATCH \
+	-dQUIET \
+	-sOutputFile="$TMP" \
+	"$INPUT"
+
+mv -f "$TMP" "$INPUT"

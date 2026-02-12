@@ -55,13 +55,14 @@ if status is-interactive
     alias j="clear && journalctl --since -1m"
 
     # DEVOPS
+    alias sql="sqlite3"
     alias pod="podman"
     alias podi="podman image"
     alias podc="podman container"
     alias podprune="podman system prune --all --force && podman rmi --all"
     alias doc="docker"
     alias doci="docker image"
-    alias doccontainerprune="docker stop (d ps -aq) && d container prune --force"
+    alias doccontainerprune="doc stop (doc ps -aq) && doc container prune --force"
     alias docsystemprune="docker system prune --force --all --volumes"
 
 
@@ -81,7 +82,7 @@ fish_add_path $HOME/.dotnet
 starship init fish | source
 
 # UV Python Package Manager
-set -Ux UV_PYTHON $HOME/.local/bin/python3.14
+set -Ux UV_PYTHON $HOME/.local/bin/python3.13
 function uvsh
     if test -f .venv/bin/activate.fish
         source .venv/bin/activate.fish
@@ -97,6 +98,6 @@ set -x N_PREFIX "$HOME/.local/bin/n"; contains "$N_PREFIX/bin" $PATH; or set -a 
 # pnpm
 set -gx PNPM_HOME "/home/paul/.local/share/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
-  set -gx PATH "$PNPM_HOME" $PATH
+	set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end

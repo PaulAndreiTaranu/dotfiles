@@ -42,7 +42,7 @@ function setup_fish() {
 	print_green "### INSTALLING FISHER PLUGINS"
 	# run_as_fish "fisher install IlanCosman/tide@v6"
 	run_as_fish "fisher install jethrokuan/z"
-	run_as_user "cd $HOME/dotfiles/configs && stow --target=$HOME fish starship"
+	run_as_user "cd $HOME/dotfiles/configs && stow --no-folding --target=$HOME fish starship"
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then

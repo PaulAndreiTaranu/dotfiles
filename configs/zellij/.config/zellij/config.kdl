@@ -421,7 +421,7 @@ serialization_interval 10000
 // (Requires restart)
 // Default: false
 // 
-disable_session_metadata true
+disable_session_metadata false
  
 // Enable or disable support for the enhanced Kitty Keyboard Protocol (the host terminal must also support it)
 // (Requires restart)

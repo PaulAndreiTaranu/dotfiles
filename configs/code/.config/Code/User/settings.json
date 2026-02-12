@@ -25,7 +25,7 @@
     "editor.quickSuggestions": {
         "comments": "on",
         "strings": "on",
-        "other": "on"
+        "other": "on",
     }, // Disables all suggestions
     "editor.quickSuggestionsDelay": 0,
     "editor.inlineSuggest.enabled": true,
@@ -33,7 +33,7 @@
     "editor.suggest.showWords": false,
     "editor.suggest.snippetsPreventQuickSuggestions": true,
     "editor.suggest.insertMode": "insert",
-    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.acceptSuggestionOnCommitCharacter": false,
     "editor.acceptSuggestionOnEnter": "off",
     "editor.tabCompletion": "on",
     "editor.wordBasedSuggestions": "off",
@@ -84,36 +84,36 @@
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["<leader>", "s"],
-            "commands": [":w"]
+            "commands": [":w"],
         },
         {
             "before": ["<leader>", "w"],
-            "commands": [":q!"]
+            "commands": [":q!"],
         },
         {
             "before": ["<leader>", "h"],
-            "commands": [":bprevious"]
+            "commands": [":bprevious"],
         },
         {
             "before": ["<leader>", "l"],
-            "commands": [":bnext"]
+            "commands": [":bnext"],
         },
         {
             "before": ["<leader>", "z"],
-            "commands": ["workbench.action.toggleZenMode"]
+            "commands": ["workbench.action.toggleZenMode"],
         },
         {
             "before": ["<leader>", "p"],
-            "commands": ["workbench.action.quickOpen"]
+            "commands": ["workbench.action.quickOpen"],
         },
         {
             "before": ["<leader>", "r"],
-            "commands": ["editor.action.rename"]
-        }
+            "commands": ["editor.action.rename"],
+        },
     ],
     // To improve performance
     "extensions.experimental.affinity": {
-        "vscodevim.vim": 1
+        "vscodevim.vim": 1,
     },
     "zenMode.centerLayout": false,
     "zenMode.restore": true,
@@ -145,7 +145,7 @@
     "emmet.triggerExpansionOnTab": true,
 
     // PROGRAMMING LANGUAGES
-    "editor.defaultFormatter": null,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     // TS/JS
     "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -159,6 +159,8 @@
     // HTML
     "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[xml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+    // CSS
+    "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 
     // JSON
     "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -166,8 +168,18 @@
     "json.format.enable": true,
 
     // PYTHON
-    "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
+    "[python]": {
+        "editor.defaultFormatter": "charliermarsh.ruff",
+        "editor.codeActionsOnSave": {
+            "source.fixAll.ruff": "explicit",
+            "source.organizeImports.ruff": "explicit",
+        },
+    },
     "python.defaultInterpreterPath": "/usr/bin/python3",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "ruff.enable": true,
+    "ruff.lint.enable": true,
 
     // Notebook / Jupyter
     "jupyter.askForKernelRestart": false,
@@ -176,28 +188,26 @@
     "notebook.insertToolbarLocation": "notebookToolbar",
     "notebook.cellToolbarLocation": {
         "default": "right",
-        "jupyter-notebook": "right"
+        "jupyter-notebook": "right",
     },
 
     // JAVA
     "[java]": { "editor.defaultFormatter": null },
 
     // GOLANG
-    "[go]": {
-        "editor.defaultFormatter": "golang.go-nightly"
-    },
+    "[go]": { "editor.defaultFormatter": "golang.go-nightly" },
     "go.toolsManagement.autoUpdate": true,
     "gopls": {
-        "formatting.gofumpt": true
+        "formatting.gofumpt": true,
     },
 
     "[lua]": {
         "editor.quickSuggestions": {
             "comments": "inline",
             "other": "on",
-            "strings": "on"
+            "strings": "on",
         },
-        "editor.semanticHighlighting.enabled": true
+        "editor.semanticHighlighting.enabled": true,
     },
     "Lua.diagnostics.globals": ["vim"],
 
@@ -207,7 +217,7 @@
     // C++
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
-        "editor.wordWrap": "off"
+        "editor.wordWrap": "off",
     },
 
     // C#
@@ -216,34 +226,42 @@
 
     // ShellScript
     "[shellscript]": { "editor.defaultFormatter": "mkhl.shfmt" },
+    "[fish]": { "editor.defaultFormatter": null },
 
     // Terraform
     "[terraform]": { "editor.defaultFormatter": "hashicorp.terraform" },
 
+    // Prisma
+    "[prisma]": {
+        "editor.defaultFormatter": "Prisma.prisma",
+    },
+
     // FILES
     "files.associations": {
-        "*.css": "tailwindcss",
+        "*.css": "css",
+        "*.pcss": "tailwindcss",
         "*.sh": "shellscript",
         "*.bash": "shellscript",
-        "*.zsh": "shellscript"
+        "*.zsh": "shellscript",
+        "*.fish": "ignore",
     },
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
-        "**/.DS_Store": true
+        "**/.DS_Store": true,
     },
     "search.exclude": {
         "node_modules": true,
         "**/bower_components": true,
-        "**/*.code-search": true
+        "**/*.code-search": true,
     },
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
         "**/node_modules/**": true,
-        "**/.hg/store/**": true
+        "**/.hg/store/**": true,
     },
 
     // WINDOW
@@ -256,12 +274,12 @@
 
     // WORKBENCH
     "workbench.iconTheme": "vscode-great-icons",
-    "workbench.colorTheme": "Aura Dark",
+    "workbench.colorTheme": "GitHub Dark Default",
     "workbench.list.horizontalScrolling": true,
     "workbench.startupEditor": "none",
     "workbench.list.smoothScrolling": true,
     "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
+        "*.ipynb": "jupyter-notebook",
     },
     "workbench.productIconTheme": "fluent-icons",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
@@ -270,18 +288,21 @@
     "workbench.colorCustomizations": {
         "focusBorder": "#00000000",
         "editor.focusedBorder": "#00000000",
-        "contrastBorder": "#00000000"
+        "contrastBorder": "#00000000",
     },
 
     "remote.SSH.remotePlatform": {
         "fedoraServer": "linux",
-        "ubuntuServer": "linux"
+        "ubuntuServer": "linux",
     },
 
-    // GAME ENGINES WINDOWS
+    // GAME ENGINES
+    "diffEditor.renderSideBySide": false,
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "markdown-preview-enhanced.codeBlockTheme": "darcula.css",
-    "godotTools.editorPath.godot4": "/home/paul/projects/godot/Godot",
+    "godotTools.editorPath.godot4": "/home/paul/Godot/Godot",
     "godotTools.lsp.serverPort": 6005,
-    "diffEditor.renderSideBySide": false
+    "[gdscript]": {
+        "editor.defaultFormatter": "geequlim.godot-tools",
+    },
 }
