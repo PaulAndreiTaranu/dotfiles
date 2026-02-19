@@ -284,7 +284,7 @@
     "workbench.productIconTheme": "fluent-icons",
     "workbench.secondarySideBar.defaultVisibility": "hidden",
     "workbench.sideBar.location": "right",
-    "workbench.activityBar.location": "top",
+    "workbench.activityBar.location": "hidden",
     "workbench.colorCustomizations": {
         "focusBorder": "#00000000",
         "editor.focusedBorder": "#00000000",
@@ -304,5 +304,5 @@
     "godotTools.lsp.serverPort": 6005,
     "[gdscript]": {
         "editor.defaultFormatter": "geequlim.godot-tools",
-    },
+    }
 }

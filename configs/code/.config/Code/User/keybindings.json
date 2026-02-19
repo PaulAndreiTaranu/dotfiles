@@ -89,5 +89,17 @@
         "key": "ctrl+e",
         "command": "workbench.view.explorer",
         "when": "!explorerViewletVisible"
+    },
+
+    // CLAUDE CODE
+    {
+        "key": "ctrl+oem_1",
+        "command": "claude-vscode.focus",
+        "when": "editorFocus || terminalFocus"
+    },
+    {
+        "key": "ctrl+oem_1",
+        "command": "workbench.action.closeAuxiliaryBar",
+        "when": "!editorFocus && !terminalFocus"
     }
 ]

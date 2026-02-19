@@ -53,6 +53,7 @@ if status is-interactive
     alias t="btop"
     alias r="reset"
     alias j="clear && journalctl --since -1m"
+    alias ai="clear && claude"
 
     # DEVOPS
     alias sql="sqlite3"
@@ -67,9 +68,12 @@ if status is-interactive
 
 
     # Shortcuts
+    if not set -q ZELLIJ
+        alias ssh "kitty +kitten ssh"
+    end
     alias sudopsql="sudo -i -u postgres psql"
     alias chmodscripts="find $HOME/dotfiles/scripts -type f -iname '*.sh' -exec chmod +x {} \;"
-    alias update="sudo apt update -y --allow-insecure-repositories && sudo apt upgrade -y && sudo apt autoremove -y"
+    alias update="sudo apt update && sudo apt upgrade -y && sudo apt full-upgrade -y && sudo apt autoremove -y && sudo apt autoclean && sudo snap refresh 2>/dev/null; flatpak update -y 2>/dev/null"
 end
 
 

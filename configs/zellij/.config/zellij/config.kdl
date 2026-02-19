@@ -324,7 +324,7 @@ pane_frames false
 //   - detach (Default)
 //   - quit
 // 
-// on_force_close "quit"
+on_force_close "detach"
  
 // Configure the scroll back buffer size
 // This is the number of lines zellij stores for each pane in the scroll back
@@ -403,7 +403,7 @@ serialize_pane_viewport true
 // defaults to the scrollback size. If this number is higher than the scrollback size, it will
 // also default to the scrollback size. This does nothing if `serialize_pane_viewport` is not true.
 // 
-// scrollback_lines_to_serialize 10000
+scrollback_lines_to_serialize 5000
  
 // Enable or disable the rendering of styled and colored underlines (undercurl).
 // May need to be disabled for certain unsupported terminals
@@ -414,7 +414,7 @@ styled_underlines true
  
 // How often in seconds sessions are serialized
 // 
-serialization_interval 10000
+serialization_interval 5000
  
 // Enable or disable writing of session metadata to disk (if disabled, other sessions might not know
 // metadata info on this session)
@@ -427,4 +427,4 @@ disable_session_metadata false
 // (Requires restart)
 // Default: true (if the host terminal supports it)
 // 
-support_kitty_keyboard_protocol false
+support_kitty_keyboard_protocol true

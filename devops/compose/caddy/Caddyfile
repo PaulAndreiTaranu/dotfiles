@@ -1,0 +1,5 @@
+test.paulandreitaranu.com {
+	tls /etc/caddy/certs/origin.pem /etc/caddy/certs/origin-key.pem
+
+	reverse_proxy test-app:80
+}
