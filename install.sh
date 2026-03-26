@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Source all required scripts
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$BASE_DIR/utils/utils.sh" || {
+source "$BASE_DIR/scripts/utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
 	exit 1
 }
@@ -68,7 +68,7 @@ files_to_remove=(
 )
 remove_with_array "${files_to_remove[@]}"
 run_as_user "mkdir -p $HOME/.config/kitty $HOME/.config/git $HOME/.local/bin $HOME/.config/zellij"
-run_as_user "cd $HOME/dotfiles/configs && stow --target=$HOME git kitty zellij"
+run_as_user "cd $HOME/dotfiles/configs && stow --no-folding --target=$HOME git kitty zellij"
 
 # Setting up imported configs
 setup_font

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
@@ -8,10 +9,10 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 }
 
 function setup_lazygit() {
+	print_green '### SETTING UP LAZYGIT'
+
 	ensure_root
 	require_commands curl tar grep stow
-
-	print_green '### SETTING UP LAZYGIT'
 
 	# Check if lazygit is already installed
 	if command -v lazygit &>/dev/null; then

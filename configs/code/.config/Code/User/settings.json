@@ -81,6 +81,8 @@
     "vim.sneak": true,
     "vim.useCtrlKeys": false,
     "vim.useSystemClipboard": true,
+    "vim.visualstar": true,
+    "vim.highlightedyank.enable": true,
     "vim.normalModeKeyBindingsNonRecursive": [
         {
             "before": ["<leader>", "s"],
@@ -109,6 +111,14 @@
         {
             "before": ["<leader>", "r"],
             "commands": ["editor.action.rename"],
+        },
+        {
+            "before": ["<leader>", "o"],
+            "commands": ["workbench.action.navigateBack"],
+        },
+        {
+            "before": ["<leader>", "i"],
+            "commands": ["workbench.action.navigateForward"],
         },
     ],
     // To improve performance
@@ -140,25 +150,26 @@
     "explorer.confirmDragAndDrop": false,
     "explorer.decorations.badges": true,
     "explorer.decorations.colors": false,
-    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
-    "emmet.showSuggestionsAsSnippets": true,
-    "emmet.triggerExpansionOnTab": true,
 
     // PROGRAMMING LANGUAGES
     "editor.defaultFormatter": "esbenp.prettier-vscode",
+
     // TS/JS
     "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-    "javascript.updateImportsOnFileMove.enabled": "always",
     "debug.javascript.autoAttachFilter": "disabled",
-    "typescript.updateImportsOnFileMove.enabled": "always",
+    "js/ts.updateImportsOnFileMove.enabled": "always",
     "npm.fetchOnlinePackageInfo": false,
 
     // HTML
+    "emmet.showExpandedAbbreviation": "inMarkupAndStylesheetFilesOnly",
+    "emmet.showSuggestionsAsSnippets": true,
+    "emmet.triggerExpansionOnTab": true,
     "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
     "[xml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
     // CSS
     "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
 
@@ -304,5 +315,5 @@
     "godotTools.lsp.serverPort": 6005,
     "[gdscript]": {
         "editor.defaultFormatter": "geequlim.godot-tools",
-    }
+    },
 }

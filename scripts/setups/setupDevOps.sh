@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$SCRIPT_DIR/utils.sh" || {
+source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
 	exit 1
 }
-source "$SCRIPT_DIR/installDocker.sh" || {
-	echo "XXX FAILED TO LOAD INSTALLDOCKER.SH"
+source "$SCRIPT_DIR/../installers/installDocker.sh" || {
+	echo "XXX FAILED TO LOAD installDocker.sh"
 	exit 1
 }
 

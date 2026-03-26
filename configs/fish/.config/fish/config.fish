@@ -25,7 +25,8 @@ if status is-interactive
     alias zz='zellij'
     alias zs='zellij -s'
     alias zd='zellij kill-all-sessions -y && zellij delete-all-sessions -y'
-    alias za='zellij a --force-run-commands'
+    alias za='zellij a'
+    alias ressurect='zellij attach --create'
 
     # GIT Alias
     alias g='git'
@@ -36,12 +37,13 @@ if status is-interactive
     alias ps="pnpm start"
     alias pd="pnpm dev"
     alias pt="pnpm test"
-    alias pi="pnpm install"
     alias pu="pnpm update --interactive --latest"
     alias pa="pnpm add"
     alias pad="pnpm add --save-dev"
-    alias prm="pnpm remove"
-    alias pls="pnpm list"
+    alias b="bun"
+    alias bd="bun dev"
+    alias ba="bun add"
+    alias bad="bun add --dev"
 
     # Python alias
     alias poe="poetry"
@@ -105,3 +107,7 @@ if not string match -q -- $PNPM_HOME $PATH
 	set -gx PATH "$PNPM_HOME" $PATH
 end
 # pnpm end
+
+# bun
+set --export BUN_INSTALL "$HOME/.bun"
+set --export PATH $BUN_INSTALL/bin $PATH

@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # Source all required scripts
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$BASE_DIR/utils.sh" || {
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
 	exit 1
 }

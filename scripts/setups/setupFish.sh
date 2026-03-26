@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
@@ -8,10 +9,14 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 }
 
 function setup_fish() {
-	ensure_root
 	print_green '### SETTING UP FISH'
 
-	require_commands curl stow fish
+	ensure_root
+	require_commands curl stow
+	if ! command -v fish &>/dev/null; then
+		print_green "### INSTALLING FISH"
+		apt -y install fish
+	fi
 
 	# Removing old config
 	run_as_user "rm -rf $HOME/.config/fish $HOME/.config/starship.toml"
@@ -33,7 +38,7 @@ function setup_fish() {
 		echo "$fish_path" >>/etc/shells
 	fi
 	# Change shell (using preserved $USER)
-	usermod --shell "$fish_path" "$USER"
+	usermod --shell "$fish_path" "${SUDO_USER:USER}"
 
 	print_green "### INSTALLING FISHER PLUGIN MANAGER"
 	FISHER_LINK="https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"

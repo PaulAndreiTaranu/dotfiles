@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Super>1', '<Super>h']"
 gsettings set org.gnome.shell.keybindings switch-to-application-2 "['<Super>2', '<Super>j']"

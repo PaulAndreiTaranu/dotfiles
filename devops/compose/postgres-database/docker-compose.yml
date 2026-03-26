@@ -17,6 +17,8 @@ services:
             interval: 10s
             timeout: 5s
             retries: 5
+        networks:
+            - backend
 
     pgweb:
         image: sosedoff/pgweb
@@ -30,6 +32,12 @@ services:
         depends_on:
             postgres:
                 condition: service_healthy
+        networks:
+            - backend
 
 volumes:
     pg_data:
+
+networks:
+    backend:
+        name: backend

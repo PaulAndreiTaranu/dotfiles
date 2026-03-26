@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
@@ -8,9 +9,9 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 }
 
 function setup_neovim() {
-	ensure_root
 	print_green '### SETTING UP NEOVIM'
 
+	ensure_root
 	require_commands snap
 
 	# Install Neovim via snap if not installed

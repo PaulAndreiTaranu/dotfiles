@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
@@ -8,7 +9,6 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 }
 
 function setup_code() {
-
 	print_green '### SETTING UP VSCODE'
 	if ! command -v code &>/dev/null; then
 		ensure_root

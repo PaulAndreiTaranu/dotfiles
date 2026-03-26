@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
@@ -10,9 +11,10 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 function setup_nvidia() {
 	print_green "### SETTING UP NVIDIA DRIVER + WAYLAND SUPPORT"
 
+	ensure_root
+
 	# 1. Remove conflicting drivers / clean slate
 	print_green "### Removing old Nvidia / nouveau drivers (if any)"
-	ensure_root
 	sudo apt remove --purge -y '^nvidia-.*' '^libnvidia-.*' 'nouveau-firmware' || true
 	sudo apt autoremove -y || true
 	sudo apt update -y

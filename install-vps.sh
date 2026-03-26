@@ -3,11 +3,11 @@ set -euo pipefail
 
 # Source all required scripts
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$BASE_DIR/utils.sh" || {
+source "$BASE_DIR/scripts/utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
 	exit 1
 }
-source "$BASE_DIR/installDocker.sh" || {
+source "$BASE_DIR/scripts/installers/installDocker.sh" || {
 	echo "XXX FAILED TO LOAD INSTALLDOCKER.SH"
 	exit 1
 }
@@ -45,15 +45,8 @@ print_green "Timezone set to UTC, NTP enabled"
 # 4. Base essentials
 # ---------------------------------------------------------------------------
 print_green "### INSTALLING BASE PACKAGES"
-apt -y install \
-	build-essential \
-	curl \
-	wget \
-	git \
-	btop \
-	jq \
-	unzip \
-	chrony
+apt -y install build-essential curl wget git btop \
+	jq unzip chrony nvim stow fish
 
 systemctl enable chrony
 systemctl start chrony
@@ -184,7 +177,6 @@ print_green "### CLEANUP"
 apt autoremove -y && apt clean -y
 
 print_green "=== VPS setup complete ==="
-print_green "#### VPS SETUP COMPLETE ####"
 print_green "# Next steps:"
 print_green "#   1. Run createUser.sh to create a non-root user"
 print_green "#      bash createUser.sh <username>"

@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
 	exit 1
 }
 
-function setup_node() {
+function installNode() {
 	require_commands curl bash
 
 	print_green '### SETTING UP NODE'
@@ -35,5 +36,5 @@ function setup_node() {
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
-	setup_node
+	installNode
 fi
