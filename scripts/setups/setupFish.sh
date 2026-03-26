@@ -38,7 +38,7 @@ function setup_fish() {
 		echo "$fish_path" >>/etc/shells
 	fi
 	# Change shell (using preserved $USER)
-	usermod --shell "$fish_path" "${SUDO_USER:USER}"
+	usermod --shell "$fish_path" "${SUDO_USER:-$USER}"
 
 	print_green "### INSTALLING FISHER PLUGIN MANAGER"
 	FISHER_LINK="https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish"
