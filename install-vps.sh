@@ -20,7 +20,7 @@ SWAP_SIZE="2G" # Adjust based on your VPS RAM
 # ---------------------------------------------------------------------------
 # 1. Root & distro check
 # ---------------------------------------------------------------------------
-ensure_root
+ensure_root "$@"
 
 ensure_ubuntu
 
@@ -179,6 +179,6 @@ apt autoremove -y && apt clean -y
 print_green "=== VPS setup complete ==="
 print_green "# Next steps:"
 print_green "#   1. Run createUser.sh to create a non-root user"
-print_green "#      bash createUser.sh <username>"
+print_green "#      sudo bash scripts/createUser.sh <username>"
 print_green "#   2. Test SSH login as that user"
 print_green "#   3. Reboot:  reboot"

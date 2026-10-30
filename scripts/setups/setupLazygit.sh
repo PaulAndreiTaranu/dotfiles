@@ -44,7 +44,7 @@ function setup_lazygit() {
 	print_green '### STOWING LAZYGIT CONFIG'
 	run_as_user "rm -rf $HOME/.config/lazygit"
 	run_as_user "mkdir -p $HOME/.config/lazygit"
-	run_as_user "cd $HOME/dotfiles/configs && stow --no-folding --target=$HOME lazygit"
+	run_as_user "cd $DOTFILES_DIR/configs && stow --no-folding --target=$HOME lazygit"
 
 	print_green '### LAZYGIT SETUP COMPLETE!'
 }

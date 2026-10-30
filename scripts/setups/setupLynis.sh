@@ -8,6 +8,8 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 	exit 1
 }
 
+ensure_root "$@"
+
 # ---------------------------------------------------------------------------
 # Lynis audit — add this section to setupVPS.sh before the cleanup step
 # ---------------------------------------------------------------------------

@@ -30,10 +30,11 @@ function setup_minikube() {
 }
 
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
-	print_green "### UPDATING SYSTEM"
-	sudo apt update
+	ensure_root "$@"
 
-	ensure_root
+	print_green "### UPDATING SYSTEM"
+	apt update
+
 	install_docker
 	enable_docker
 	# setup_kubectl

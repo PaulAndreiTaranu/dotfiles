@@ -31,11 +31,11 @@ function setup_tmux() {
 		$HOME/.tmux/plugins
 	)
 	remove_with_array "${nvim_config_array[@]}"
-	as_normal_user "mkdir $HOME/.config/tmux && cd $HOME/dotfiles && stow --no-folding --target=$HOME tmux"
+	run_as_user "mkdir $HOME/.config/tmux && cd $DOTFILES_DIR/configs && stow --no-folding --target=$HOME tmux"
 
 	print_green '### INSTALLING TMUX PLUGIN MANGER AND PLUGINS'
-	as_normal_user "git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm"
-	as_normal_user "bash $HOME/.tmux/plugins/tpm/bin/install_plugins"
+	run_as_user "git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm"
+	run_as_user "bash $HOME/.tmux/plugins/tpm/bin/install_plugins"
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then

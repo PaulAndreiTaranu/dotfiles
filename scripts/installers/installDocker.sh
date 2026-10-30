@@ -14,6 +14,8 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 install_docker() {
 	print_green "### INSTALLING DOCKER"
 
+	ensure_root
+
 	if command -v docker &>/dev/null; then
 		print_green "### Docker already installed, skipping"
 		return 0
@@ -42,6 +44,8 @@ https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_C
 }
 
 enable_docker() {
+	ensure_root
+
 	systemctl enable docker
 	systemctl start docker
 	print_green "### Docker service enabled & started"
@@ -49,7 +53,7 @@ enable_docker() {
 
 # Run directly if executed (not just sourced)
 if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
-	ensure_root
+	ensure_root "$@"
 	ensure_ubuntu
 	install_docker
 	enable_docker

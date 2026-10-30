@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Source all required scripts
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/../utils/utils.sh" || {
 	echo "XXX FAILED TO LOAD UTILS.SH"
@@ -9,28 +8,27 @@ source "$SCRIPT_DIR/../utils/utils.sh" || {
 }
 
 function reset_neovim() {
-	print_green '### RESETTING NEOVIM'
+	print_green "### RESETTING NEOVIM"
 
-	if [[ -e "/usr/bin/vim" || -e "/usr/bin/vi" ]]; then
-		print_green '### REMOVING VIM'
-		sudo apt purge -y --auto-remove vim
-		sudo rm -rf "/usr/bin/vim"
-		sudo rm -rf "/usr/bin/vi"
+	ensure_root
+
+	# 1. Wipe state, cache, and plugins (keep config for re-stow)
+	run_as_user "rm -rf $HOME/.local/share/nvim $HOME/.local/state/nvim $HOME/.cache/nvim"
+
+	# 2. Re-stow config
+	run_as_user "cd $DOTFILES_DIR/configs && stow --restow --no-folding --target=$HOME nvim"
+
+	# 3. Ensure vi → nvim alias
+	if command -v snap &>/dev/null && snap list nvim &>/dev/null; then
+		snap alias nvim vi
+	elif command -v nvim &>/dev/null; then
+		run_as_user "ln -sf $(which nvim) $HOME/.local/bin/vi"
 	fi
-	if_snap 'sudo snap alias nvim vi'
 
-	nvim_config_array=(
-		$HOME/.config/nvim
-		$HOME/.local/share/nvim
-		$HOME/.local/state/nvim
-		$HOME/.cache/nvim
-	)
-	remove_with_array "${nvim_config_array[@]}"
-	as_normal_user "mkdir -p $HOME/.config/nvim"
-	as_normal_user "cd $HOME/dotfiles/configs && stow --target="$HOME" nvim"
+	print_green "### NEOVIM RESET COMPLETE"
+
 }
 
 if [ "${BASH_SOURCE[0]}" -ef "$0" ]; then
-	ensure_root
 	reset_neovim
 fi

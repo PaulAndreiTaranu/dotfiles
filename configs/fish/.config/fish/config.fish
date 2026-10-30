@@ -1,4 +1,6 @@
 set -g fish_greeting ''
+set -gx EDITOR nvim
+set -gx VISUAL nvim
 
 if status is-interactive
     fish_vi_key_bindings
@@ -86,6 +88,9 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.dotnet
 
 starship init fish | source
+
+# Godot projects folder
+set -Ux GODOT_PROJECTS_DIR ~/Godot
 
 # UV Python Package Manager
 set -Ux UV_PYTHON $HOME/.local/bin/python3.13

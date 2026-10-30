@@ -142,6 +142,7 @@
     "git.decorations.enabled": false,
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 180000,
+    "files.restoreUndoStack": false,
     "scm.diffDecorationsGutterVisibility": "hover",
     "extensions.closeExtensionDetailsOnViewChange": true,
     "extensions.ignoreRecommendations": true,
@@ -249,7 +250,7 @@
 
     // FILES
     "files.associations": {
-        "*.css": "css",
+        "*.css": "tailwindcss",
         "*.pcss": "tailwindcss",
         "*.sh": "shellscript",
         "*.bash": "shellscript",
@@ -262,11 +263,14 @@
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
+        "**/*.uid": true,
+        "**/*.import": true,
     },
     "search.exclude": {
         "node_modules": true,
         "**/bower_components": true,
         "**/*.code-search": true,
+        "**/*.uid": true,
     },
     "files.watcherExclude": {
         "**/.git/objects/**": true,
@@ -315,5 +319,7 @@
     "godotTools.lsp.serverPort": 6005,
     "[gdscript]": {
         "editor.defaultFormatter": "geequlim.godot-tools",
+        "editor.insertSpaces": false,
     },
+    "claudeCode.preferredLocation": "panel",
 }

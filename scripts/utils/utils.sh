@@ -18,10 +18,22 @@ print_green() { printf "${_GREEN}%s${_RESET}\n" "$*" >&2; }
 print_yellow() { printf "${_YELLOW}%s${_RESET}\n" "$*" >&2; }
 print_red() { printf "${_RED}%s${_RESET}\n" "$*" >&2; }
 
-# Re-exec with sudo if not root
+# Root of the dotfiles repo, wherever it was cloned
+DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+
+# Under sudo, HOME points to /root. Point it back to the invoking user's home
+# so every $HOME path in the scripts targets the real user.
+if [[ $EUID -eq 0 && -n "${SUDO_USER:-}" && "$SUDO_USER" != "root" ]]; then
+	HOME="$(getent passwd "$SUDO_USER" | cut -d: -f6)"
+	export HOME
+fi
+
+# Re-exec the running script as root if it wasn't started with sudo
+# Usage: ensure_root "$@"
 ensure_root() {
 	if [[ $EUID -ne 0 ]]; then
-		exec sudo --preserve-env=USER,HOME,PATH "$0" "$@"
+		print_yellow "### ROOT REQUIRED, RE-RUNNING WITH SUDO"
+		exec sudo bash "$0" "$@"
 	fi
 }
 
@@ -30,6 +42,10 @@ ensure_ubuntu() {
 		print_red "XXX This script only supports Ubuntu"
 		exit 1
 	fi
+}
+
+is_ubuntu() {
+	[[ -f /etc/os-release ]] && grep -qi 'ubuntu' /etc/os-release
 }
 
 # Run a command as the non-root user under a given shell
@@ -50,13 +66,33 @@ _run_as() {
 run_as_user() { _run_as bash "$@"; }
 run_as_fish() { _run_as fish "$@"; }
 
+# True if the non-root user is running a GNOME session.
+# Checks the process list because sudo strips XDG_CURRENT_DESKTOP.
+is_gnome() {
+	[[ "${XDG_CURRENT_DESKTOP:-}" == *"GNOME"* ]] ||
+		pgrep -u "${SUDO_USER:-$USER}" -x gnome-shell &>/dev/null
+}
+
+# Run gsettings as the non-root user against their desktop session bus,
+# so settings land in their dconf database instead of root's
+# Usage: run_gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Super>1']"
+run_gsettings() {
+	local user="${SUDO_USER:-$USER}"
+	local bus="/run/user/$(id -u "$user")/bus"
+	if [[ ! -S "$bus" ]]; then
+		print_red "XXX No session bus for $user, log in to the desktop first"
+		return 1
+	fi
+	sudo -u "$user" env DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" gsettings "$@"
+}
+
 # Deletes every path in the provided array
 # Usage: remove_with_array "${array[@]}"
 remove_with_array() {
 	local item
 	for item in "$@"; do
 		print_red "XXX REMOVING $item"
-		run_as_user "rm -rf $item"
+		run_as_user "rm -rf '$item'"
 	done
 }
 

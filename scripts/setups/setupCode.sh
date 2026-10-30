@@ -13,7 +13,7 @@ function setup_code() {
 	if ! command -v code &>/dev/null; then
 		ensure_root
 		print_green "### INSTALLING VS CODE VIA SNAP..."
-		if_snap "sudo snap install --classic code"
+		if_snap snap install --classic code
 	else
 		print_yellow "!!! VS CODE ALREADY INSTALLED, SKIPPING TO EXTENSIONS"
 	fi
@@ -48,7 +48,7 @@ function setup_code() {
 
 	print_green "### Stowing VS Code config"
 	run_as_user "rm -rf $CODE_CONFIG && mkdir -p $CODE_CONFIG"
-	run_as_user "cd $HOME/dotfiles/configs && stow --no-folding --target=$HOME code"
+	run_as_user "cd $DOTFILES_DIR/configs && stow --no-folding --target=$HOME code"
 
 }
 
